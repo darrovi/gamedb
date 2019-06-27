@@ -1,0 +1,21 @@
+<template>
+    <section>
+        <h1>CONSOLES</h1>
+
+        <router-link to="/consoles/create">Create console</router-link> |
+        <router-link to="/consoles/1">Console 1</router-link> |
+        <router-link to="/consoles/2">Console 2</router-link> |
+        <router-link to="/consoles/3">Console 3</router-link>
+
+    </section>
+</template>
+
+<script>
+    export default {
+        name: "Consoles"
+    }
+</script>
+
+<style scoped>
+
+</style>
