@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap');
+
+@font-face {
+  font-family: 'DIN Alternate';
+  font-style: normal;
+  font-weight: normal;
+  src: local('DIN Alternate Bold'), url('~@/assets/fonts/DINAlternate-Bold.woff') format('woff');
+}
+
+body {
+  margin: 0;
+  color: $text-color;
+  background: $background-color;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  color: $text-color;
+  font-family: DIN Alternate;
+  font-size: 26px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+h3 {
+  font-weight: 300;
+}
+
+h4 {
+  font-weight: 300;
+  color: #464646;
+}
+
+p, span {
+  font-weight: 300;
+  margin: 0;
+}
+
+b {
+  color: #1A6f4C;
+}
+
+a {
+  color: $primary-color;
+
+  &:visited {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+button {
+  font-family: DIN Alternate, sans-serif;
+  color: $primary-color;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  margin: 16px;
+  border-radius: 6px;
+  transition: background .1s ease-in-out;
+  cursor: pointer;
+
+  border: initial;
+  font-size: initial;
+  background: none;
+  outline: none;
+
+  a {
+    text-decoration: none;
+  }
+
+  &:active {
+    background: #212121;
+  }
+
+  &[danger] {
+    color: $text-color;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 300;
+  display: block;
+  margin-bottom: 8px;
+
+  &[required] {
+    &::after {
+      content: '*';
+      color: $danger-color;
+      font-size: 25px;
+      padding: 2px;
+      line-height: 0;
+    }
+  }
+}
+
+input {
+  background: transparent;
+  border: none;
+  padding: 8px;
+  border-bottom: 1px solid $text-color;
+  color: $text-color;
+  font-size: 16px;
+  font-weight: 300;
+  width: 100%;
+  margin-bottom: 32px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-bottom-color .3s ease-in-out;
+
+  &:focus {
+    border-bottom-color: $primary-color;
+  }
+
+  &:invalid {
+    border-bottom-color: $danger-color;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

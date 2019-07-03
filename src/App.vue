@@ -1,31 +1,23 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/games">Library</router-link> |
-      <router-link to="/playing">Playing</router-link> |
-      <router-link to="/consoles">Consoles</router-link> |
-      <router-link to="/user">User</router-link>
+    <div id="app">
+        <div id="nav">
+            <router-link to="/games">Library</router-link>
+            <router-link to="/playing">Playing</router-link>
+            <router-link to="/consoles">Consoles</router-link>
+            <router-link to="/user">User</router-link>
+        </div>
+        <router-view/>
     </div>
-    <router-view/>
-  </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+    body {
     }
-  }
-}
+
+    #app {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        max-width: $body-max-width;
+        margin: 0 auto;
+    }
 </style>
