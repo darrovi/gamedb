@@ -4,4 +4,10 @@
 
 [has-navbar] {
   margin-bottom: 52px;
+
+  // Cuando se ejecute como app y no como web habrá que poner los siguientes
+  // estilos para que la barra de scroll no se sobreponga a la navbar
+  //height: calc(100vh - 52px);
+  //overflow: auto;
+  //box-sizing: border-box;
 }
