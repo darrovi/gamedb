@@ -2,7 +2,7 @@
     <section>
         <h1>REGISTER</h1>
 
-        <router-link to="/games">Finish register (to library or login?)</router-link>
+        <router-link to="/games">Finish register (to games or login?)</router-link>
     </section>
 </template>
 

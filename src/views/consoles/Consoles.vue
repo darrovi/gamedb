@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section padding has-navbar>
         <h1>CONSOLES</h1>
 
         <router-link to="/consoles/create">Create console</router-link> |
@@ -7,12 +7,15 @@
         <router-link to="/consoles/2">Console 2</router-link> |
         <router-link to="/consoles/3">Console 3</router-link>
 
+        <Navbar/>
     </section>
 </template>
 
 <script>
+    import Navbar from "../../components/Navbar";
     export default {
-        name: "Consoles"
+        name: "Consoles",
+        components: {Navbar}
     }
 </script>
 

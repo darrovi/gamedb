@@ -47,7 +47,7 @@
         </div>
 
         <button>
-            <router-link to="/games">Login (to library)</router-link>
+            <router-link to="/games">Login (to games)</router-link>
         </button>
         <button>
             <router-link to="/register">Register</router-link>

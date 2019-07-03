@@ -1,14 +1,18 @@
 <template>
-    <section>
+    <section padding has-navbar>
         <h1>USER</h1>
 
         <router-link to="/login">Logout (to login)</router-link>
+
+        <Navbar/>
     </section>
 </template>
 
 <script>
+    import Navbar from "../components/Navbar";
     export default {
-        name: "User"
+        name: "User",
+        components: {Navbar}
     }
 </script>
 
