@@ -90,6 +90,7 @@
             span {
                 font-size: 12px;
                 color: $text-color;
+                font-weight: 400;
             }
 
             &.router-link-active {
