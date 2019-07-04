@@ -2,6 +2,9 @@
   "games": {
     "title": "Biblioteca"
   },
+  "create-game": {
+    "title": "Añadir juego"
+  },
   "playing": {
     "title": "Jugando"
   },

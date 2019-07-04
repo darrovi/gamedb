@@ -17,6 +17,9 @@
     import SpinnerPage from "./components/SpinnerPage";
 
     export default {
-        components: {SpinnerPage}
+        components: {SpinnerPage},
+        created() {
+            this.$store.dispatch('games/getGames')
+        }
     }
 </script>
