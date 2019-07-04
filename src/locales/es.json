@@ -1,0 +1,14 @@
+{
+  "games": {
+    "title": "Biblioteca"
+  },
+  "playing": {
+    "title": "Jugando"
+  },
+  "consoles": {
+    "title": "Consolas"
+  },
+  "user": {
+    "title": "Perfil"
+  }
+}

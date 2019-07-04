@@ -7,7 +7,7 @@
                         <path fill-rule="nonzero"
                               d="M0 11h3.25V7H0v4zm0 7h3.25v-4H0v4zM0 4h3.25V0H0v4zm5.688 7H26V7H5.687v4zm0 7H26v-4H5.687v4zm0-18v4H26V0H5.687z"/>
                     </svg>
-                    <span>Biblioteca</span>
+                    <span>{{$t('games.title')}}</span>
                 </router-link>
             </li>
             <li>
@@ -17,7 +17,7 @@
                         <path fill-rule="nonzero"
                               d="M0 11h3.25V7H0v4zm0 7h3.25v-4H0v4zM0 4h3.25V0H0v4zm5.688 7H26V7H5.687v4zm0 7H26v-4H5.687v4zm0-18v4H26V0H5.687z"/>
                     </svg>
-                    <span>Jugando</span>
+                    <span>{{$t('playing.title')}}</span>
                 </router-link>
             </li>
             <li>
@@ -29,7 +29,7 @@
                             <circle cx="9" cy="4.5" r="4.5"/>
                         </g>
                     </svg>
-                    <span>Consolas</span>
+                    <span>{{$t('consoles.title')}}</span>
                 </router-link>
             </li>
             <li>
@@ -40,7 +40,7 @@
                             <circle cx="9" cy="4.5" r="4.5"/>
                         </g>
                     </svg>
-                    <span>Perfil</span>
+                    <span>{{$t('user.title')}}</span>
                 </router-link>
             </li>
         </ul>

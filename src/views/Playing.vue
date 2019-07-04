@@ -1,6 +1,6 @@
 <template>
     <section padding has-navbar>
-        <h1>PLAYING</h1>
+        <h1>{{$t('playing.title')}}</h1>
 
         <router-link to="/games/1">Game 1</router-link> |
         <router-link to="/games/2">Game 2</router-link> |

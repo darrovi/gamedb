@@ -1,6 +1,6 @@
 <template>
     <section padding has-navbar>
-        <h1>CONSOLES</h1>
+        <h1>{{$t('consoles.title')}}</h1>
 
         <router-link to="/consoles/create">Create console</router-link> |
         <router-link to="/consoles/1">Console 1</router-link> |

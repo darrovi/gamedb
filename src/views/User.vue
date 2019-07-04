@@ -1,6 +1,6 @@
 <template>
     <section padding has-navbar>
-        <h1>USER</h1>
+        <h1>{{$t('user.title')}}</h1>
 
         <router-link to="/login">Logout (to login)</router-link>
 

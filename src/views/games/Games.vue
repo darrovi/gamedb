@@ -1,6 +1,6 @@
 <template>
     <section padding has-navbar class="games">
-        <h1>Biblioteca</h1>
+        <h1>{{$t('games.title')}}</h1>
 
         <router-link to="/games/create">Create game</router-link>
 

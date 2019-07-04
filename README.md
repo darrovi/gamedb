@@ -44,3 +44,9 @@ En este fichero se encontrarán las clases que vayan a utilizarse en otros compo
 
 ### Theme (@/assets/styles/theme.scss)
 En este fichero se han definido las variables CSS de tal forma que más adelante puedan cambiarse los temas de la aplicación
+
+
+## Localization
+En la carpeta @/locales se encuentran los distintos ficheros para los mensajes de cada idioma (por ahora solo español). Las traducciones pueden utilizarse en cualquier parte, por ejemplo: `{{$t('user.title')}}`
+
+[Documentación oficial](https://kazupon.github.io/vue-i18n/started.html)
