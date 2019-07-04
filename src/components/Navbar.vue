@@ -66,7 +66,8 @@
             margin: 0 auto;
             display: flex;
             justify-content: space-evenly;
-            padding: 0 16px;
+            //noinspection CssInvalidFunction
+            padding: 0 16px env(safe-area-inset-bottom);
 
             li {
                 flex: 1 1 25%;

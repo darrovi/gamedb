@@ -3,7 +3,8 @@
 }
 
 [has-navbar] {
-  margin-bottom: 52px;
+  //noinspection CssInvalidFunction
+  margin-bottom: calc(52px + env(safe-area-inset-bottom));
 
   // Cuando se ejecute como app y no como web habrá que poner los siguientes
   // estilos para que la barra de scroll no se sobreponga a la navbar
