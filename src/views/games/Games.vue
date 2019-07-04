@@ -16,10 +16,15 @@
 <script>
     import Navbar from "../../components/Navbar";
     import GameListItem from "../../components/GameListItem";
+    import loadingStore from '@/stores/loading-store'
 
     export default {
         name: "Games",
-        components: {GameListItem, Navbar}
+        components: {GameListItem, Navbar},
+        mounted: () => {
+            loadingStore.commit('startLoading');
+            setTimeout(() => loadingStore.commit('stopLoading'), 1000);
+        }
     }
 </script>
 
@@ -28,7 +33,7 @@
         &__list {
             margin-top: 32px;
 
-            >:not(:last-child) {
+            > :not(:last-child) {
                 margin-bottom: 16px;
             }
         }

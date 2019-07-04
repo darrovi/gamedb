@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <router-view/>
+        <SpinnerPage/>
     </div>
 </template>
 
@@ -12,3 +13,10 @@
         margin: 0 auto;
     }
 </style>
+<script>
+    import SpinnerPage from "./components/SpinnerPage";
+
+    export default {
+        components: {SpinnerPage}
+    }
+</script>
