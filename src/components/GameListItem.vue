@@ -1,7 +1,6 @@
 <template>
     <router-link v-bind:to="'/games/' + game.id" tag="article" class="game-list-item">
-        <div class="game-list-item__image"
-             v-bind:style="{ backgroundImage: 'url(https://cdn.forbes.com.mx/2018/08/1-Portada-Propiedad-de-Cherry-Team.jpg)' }"></div>
+        <div class="game-list-item__image" v-bind:style="{ backgroundImage: 'url(' + game.image + ')' }"></div>
         <div class="game-list-item__info">
             <h2 class="game-list-item__name">{{game.name}}</h2>
             <h3 class="game-list-item__categories">{{game.genre}}</h3>

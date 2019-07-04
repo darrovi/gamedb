@@ -1,5 +1,5 @@
 <template>
-    <section padding has-navbar class="games">
+    <section padding has-navbar has-header class="games">
         <header header>
             <h1>{{$t('games.title')}}</h1>
             <img src="@/assets/icons/search.svg">

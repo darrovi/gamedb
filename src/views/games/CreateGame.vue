@@ -1,5 +1,5 @@
 <template>
-    <section padding class="create-game">
+    <section padding has-header class="create-game">
         <header header>
             <h1>{{$t('create-game.title')}}</h1>
             <router-link to="/games">
@@ -23,6 +23,11 @@
                 <input id="company" required v-model="company"/>
             </fieldset>
 
+            <fieldset>
+                <label required for="image">{{$t('create-game.image')}}</label>
+                <input id="image" required v-model="image"/>
+            </fieldset>
+
             <button class="create-game__form-button" type="submit" v-bind:disabled="!isFormValid">Enviar</button>
         </form>
     </section>
@@ -37,12 +42,13 @@
             return {
                 name: null,
                 genre: null,
-                company: null
+                company: null,
+                image: null
             }
         },
         computed: {
             isFormValid() {
-                return this.name && this.genre && this.company;
+                return this.name && this.genre && this.company && this.image;
             }
         },
         methods: {
@@ -52,10 +58,12 @@
                 const game = {
                     name: this.name,
                     genre: this.genre,
-                    company: this.company
+                    company: this.company,
+                    image: this.image
                 };
 
-                db.collection('games').add(game).then((doc) => {
+
+            db.collection('games').add(game).then((doc) => {
                     this.$store.commit('loading/stop');
                     this.$router.push({path: '/games/' + doc.id})
                 });
