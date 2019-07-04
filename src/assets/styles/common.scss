@@ -5,6 +5,7 @@
 [has-navbar] {
   //noinspection CssInvalidFunction
   margin-bottom: calc(52px + env(safe-area-inset-bottom));
+  margin-top: 62px;
 
   // Cuando se ejecute como app y no como web habrá que poner los siguientes
   // estilos para que la barra de scroll no se sobreponga a la navbar
@@ -15,7 +16,13 @@
 
 [header] {
   display: flex;
-  margin-bottom: 36px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: $background-color;
+  padding: 16px;
+  box-sizing: border-box;
 
   h1 {
     margin-right: auto;
@@ -27,5 +34,9 @@
 
   img {
     margin-left: 16px;
+
+    &:active {
+      opacity: 0.5;
+    }
   }
 }
