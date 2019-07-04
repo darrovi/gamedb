@@ -16,14 +16,13 @@
 <script>
     import Navbar from "../../components/Navbar";
     import GameListItem from "../../components/GameListItem";
-    import loadingStore from '@/stores/loading-store'
 
     export default {
         name: "Games",
         components: {GameListItem, Navbar},
-        mounted: () => {
-            loadingStore.commit('startLoading');
-            setTimeout(() => loadingStore.commit('stopLoading'), 1000);
+        mounted: function() {
+            this.$store.commit('loading/start');
+            setTimeout(() => this.$store.commit('loading/stop'), 1000);
         }
     }
 </script>

@@ -8,13 +8,11 @@
 </template>
 
 <script>
-    import loadingStore from '@/stores/loading-store'
-
     export default {
         name: 'SpinnerPage',
         computed: {
             loading () {
-                return loadingStore.state.loading
+                return this.$store.getters['loading/isLoading']
             }
         }
     }
