@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Path</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="339.862136 31.5707071 331.290707 31.5707071 331.290707 40.1421356 328.433564 40.1421356 328.433564 31.5707071 319.862136 31.5707071 319.862136 28.7135642 328.433564 28.7135642 328.433564 20.1421356 331.290707 20.1421356 331.290707 28.7135642 339.862136 28.7135642"></polygon>
+        <filter x="-35.0%" y="-25.0%" width="170.0%" height="170.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.9 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Game" transform="translate(-316.000000, -20.000000)" fill-rule="nonzero">
+            <g id="Path" transform="translate(329.862136, 30.142136) rotate(-315.000000) translate(-329.862136, -30.142136) ">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#FFFFFF" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
