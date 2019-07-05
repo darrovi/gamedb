@@ -14,7 +14,7 @@ import CreateConsole from './views/consoles/CreateConsole.vue'
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
@@ -78,4 +78,11 @@ export default new Router({
             component: NotFound
         }
     ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+    window.scrollTo(0, 0);
+    next();
+});
+
+export default router;
