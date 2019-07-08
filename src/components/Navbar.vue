@@ -72,6 +72,7 @@
 
             li {
                 flex: 1 1 25%;
+                  list-style: none;
             }
         }
 

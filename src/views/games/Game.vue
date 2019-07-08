@@ -15,14 +15,54 @@
         <div class="game__content" padding>
             <h2>Información</h2>
 
-            <p class="game__description" id="game-description">
-                {{game.description}}
+            <div class="game__description" id="game-description">
+                <p v-html="game.description"></p>
+
                 <button @click="viewMoreDescription" class="game__more-description">
                     <img src="@/assets/icons/more-arrow.svg">
                 </button>
-            </p>
-        </div>
+            </div>
 
+            <div class="game__box">
+                <div>
+                    <p class="game__label">{{$t('create-game.release-date')}}</p>
+                    <p>{{game.releaseDate || '---'}}</p>
+                </div>
+                <div>
+                    <p class="game__label">{{$t('create-game.original-platform')}}</p>
+                    <p>{{game.originalPlatform || '---'}}</p>
+                </div>
+            </div>
+
+            <div class="game__box">
+                <div>
+                    <p class="game__label">{{$t('create-game.publishers')}}</p>
+                    <p>{{game.publishers || '---'}}</p>
+                </div>
+                <div>
+                    <p class="game__label">{{$t('create-game.developers')}}</p>
+                    <p>{{game.developers || '---'}}</p>
+                </div>
+            </div>
+
+            <div class="game__box">
+                <div>
+                    <p class="game__label">{{$t('create-game.genres')}}</p>
+                    <p>{{game.genres || '---'}}</p>
+                </div>
+            </div>
+
+            <div class="game__box">
+                <div>
+                    <p class="game__label">{{$t('create-game.serie')}}</p>
+                    <p>{{game.serie || '---'}}</p>
+                </div>
+                <div>
+                    <p class="game__label">{{$t('create-game.score')}}</p>
+                    <p>{{game.score || '---'}}</p>
+                </div>
+            </div>
+        </div>
     </section>
 </template>
 
@@ -144,6 +184,21 @@
             padding: 0;
             background: $background-color;
             opacity: 0.9;
+        }
+
+        &__box {
+            display: flex;
+            margin-top: 32px;
+
+            > div {
+                flex: 0 1 50%;
+            }
+        }
+
+        &__label {
+            font-weight: 100;
+            font-size: 14px;
+            margin-bottom: 4px;
         }
     }
 </style>

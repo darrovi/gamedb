@@ -10,8 +10,7 @@
         <form @submit="createGame">
             <fieldset class="create-game__name-fieldset">
                 <label required for="name">{{$t('create-game.name')}}</label>
-                <input @keydown.enter.prevent="searchPossibleGames" id="name" required v-model="game.name"
-                       autocomplete="off"/>
+                <input @keydown="onNameInput" id="name" required v-model="game.name" autocomplete="off"/>
                 <ul>
                     <li v-for="game in possibleGames" v-bind:key="game.id" @click="selectGame(game)">{{game.name}}
                         ({{game.released}})
@@ -40,11 +39,6 @@
             </fieldset>
 
             <fieldset>
-                <label for="serie">{{$t('create-game.serie')}}</label>
-                <input id="serie" v-model="game.serie"/>
-            </fieldset>
-
-            <fieldset>
                 <label for="publishers">{{$t('create-game.publishers')}}</label>
                 <input id="publishers" v-model="game.publishers"/>
             </fieldset>
@@ -60,8 +54,13 @@
             </fieldset>
 
             <fieldset>
+                <label for="serie">{{$t('create-game.serie')}}</label>
+                <input id="serie" v-model="game.serie"/>
+            </fieldset>
+
+            <fieldset>
                 <label for="score">{{$t('create-game.score')}}</label>
-                <input id="score" type="number" v-model="game.score"/>
+                <input id="score" type="number" min="0" max="100" v-model="game.score"/>
             </fieldset>
 
             <button class="create-game__form-button" type="submit">{{$t('create-game.title')}}</button>
@@ -87,23 +86,32 @@
             }
         },
         methods: {
-            selectCustomGame: function () {
+            selectCustomGame() {
                 this.game = {};
             },
-            searchPossibleGames: function () {
+            onNameInput(event) {
+                if (event.key === 'Enter') {
+                    this.searchPossibleGames();
+                    event.preventDefault();
+                } else {
+                    this.possibleGames = [];
+                }
+
+            },
+            searchPossibleGames() {
                 axios
                     .get('https://api.rawg.io/api/games?page_size=15&search=' + this.game.name)
                     .then(res => {
                         this.possibleGames = res.data.results
                     })
             },
-            selectGame: function (game) {
+            selectGame(game) {
                 axios
                     .get('https://api.rawg.io/api/games/' + game.slug)
                     .then(res => {
                         this.game = {
                             name: res.data.name,
-                            description: res.data.description_raw,
+                            description: res.data.description,
                             genres: res.data.genres.map(g => g.name).join(', '),
                             releaseDate: res.data.released,
                             originalPlatform: res.data.platforms.map(p => p.platform.name).join(', '),
@@ -114,7 +122,7 @@
                     })
 
             },
-            createGame: function (e) {
+            createGame(e) {
                 this.$store.commit('loading/start');
                 this.game.createdAt = new Date();
                 this.game.updatedAt = new Date();

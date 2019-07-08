@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap');
 
 @font-face {
   font-family: 'DIN Alternate';
@@ -18,9 +18,10 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 
   -webkit-tap-highlight-color: transparent;
-  -moz-tap-highlight-color: transparent;
-  -o-tap-highlight-color: transparent;
-  tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 
   :focus {
     outline: none;
@@ -157,15 +158,5 @@ input {
   &:disabled {
     pointer-events: none;
     opacity: 0.5;
-  }
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-
-  li {
-    list-style: none;
-    display: block;
   }
 }

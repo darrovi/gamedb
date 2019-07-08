@@ -1,4 +1,13 @@
 {
+  "game": {
+    "release-date": "Release date",
+    "original-platform": "Original platform",
+    "serie": "Serie",
+    "publishers": "Publishers",
+    "developers": "Developers",
+    "genres": "Genres",
+    "score": "Score"
+  },
   "games": {
     "title": "Library"
   },
@@ -13,7 +22,7 @@
     "publishers": "Publishers",
     "developers": "Developers",
     "genres": "Genres",
-    "score": "Score"
+    "score": "Score (0-100)"
   },
   "playing": {
     "title": "Playing"
