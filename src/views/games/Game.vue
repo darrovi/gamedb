@@ -53,7 +53,6 @@
 </template>
 
 <script>
-
     const SCROLL_CONTENT_MARGIN_TOP = 136;
     const IMAGE_SIZE = 200;
     export default {
@@ -70,7 +69,7 @@
             document.addEventListener('scroll', this.onScroll)
         },
         destroyed() {
-          document.removeEventListener('scroll', this.onScroll)
+            document.removeEventListener('scroll', this.onScroll)
         },
         methods: {
             onScroll() {
@@ -99,6 +98,9 @@
 
             h1 {
                 margin-right: auto;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
 
             a {
@@ -134,14 +136,13 @@
         &__image-gradient {
             height: 100%;
             width: 100%;
-            background: rgba(13, 13, 13, 0);
-            background: -moz-linear-gradient(top, rgba(13, 13, 13, 0) 0%, rgba(13, 13, 13, 1) 100%);
-            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(13, 13, 13, 0)), color-stop(100%, rgba(13, 13, 13, 1)));
-            background: -webkit-linear-gradient(top, rgba(13, 13, 13, 0) 0%, rgba(13, 13, 13, 1) 100%);
-            background: -o-linear-gradient(top, rgba(13, 13, 13, 0) 0%, rgba(13, 13, 13, 1) 100%);
-            background: -ms-linear-gradient(top, rgba(13, 13, 13, 0) 0%, rgba(13, 13, 13, 1) 100%);
-            background: linear-gradient(to bottom, rgba(13, 13, 13, 0) 0%, rgba(13, 13, 13, 1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0d0d0d', endColorstr='#0d0d0d', GradientType=0);
+            background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, $background-color 90%, $background-color 100%);
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(90%, $background-color), color-stop(100%, $background-color));
+            background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, $background-color 90%, $background-color 100%);
+            background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, $background-color 90%, $background-color 100%);
+            background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, $background-color 90%, $background-color 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, $background-color 90%, $background-color 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
         }
 
         &__content {

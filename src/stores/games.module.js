@@ -13,7 +13,7 @@ const getters = {
 const mutations = {
     GET_GAMES: (state) => {
         let games = [];
-        db.collection('games').onSnapshot((snapshot) => {
+        db.collection('games').orderBy('updatedAt', "desc").onSnapshot((snapshot) => {
             games = [];
             snapshot.forEach((doc) => {
                 games.push({id: doc.id, ...doc.data()})

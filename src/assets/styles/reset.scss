@@ -144,6 +144,7 @@ input {
   box-sizing: border-box;
   border-radius: 0;
   transition: border-bottom-color .3s ease-in-out;
+  font-family: 'Roboto', sans-serif;
 
   &:focus {
     border-bottom-color: $primary-color;

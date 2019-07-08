@@ -1,0 +1,27 @@
+{
+  "games": {
+    "title": "Library"
+  },
+  "create-game": {
+    "title": "Add game",
+    "name": "Name",
+    "image": "Image (URL)",
+    "description": "Description",
+    "release-date": "Release date",
+    "original-platform": "Original platform",
+    "serie": "Serie",
+    "publishers": "Publishers",
+    "developers": "Developers",
+    "categories": "Categories",
+    "score": "Score"
+  },
+  "playing": {
+    "title": "Playing"
+  },
+  "consoles": {
+    "title": "Consoles"
+  },
+  "user": {
+    "title": "Profile"
+  }
+}
