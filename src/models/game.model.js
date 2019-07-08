@@ -4,7 +4,7 @@ class Game {
      * @param {string} userId
      * @param {string} name
      * @param {string} description
-     * @param {string} categories
+     * @param {string} genres
      * @param {Date} releaseDate
      * @param {string} originalPlatform
      * @param {string} publishers
@@ -24,7 +24,7 @@ class Game {
                 name,
                 image,
                 description,
-                categories,
+                genres,
                 releaseDate,
                 originalPlatform,
                 publishers,
@@ -43,7 +43,7 @@ class Game {
         this.name = name;
         this.image = image;
         this.description = description;
-        this.categories = categories;
+        this.genres = genres;
         this.releaseDate = releaseDate;
         this.originalPlatform = originalPlatform;
         this.publishers = publishers;

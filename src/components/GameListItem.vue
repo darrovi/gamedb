@@ -3,7 +3,7 @@
         <div class="game-list-item__image" v-bind:style="{ backgroundImage: 'url(' + game.image + ')' }"></div>
         <div class="game-list-item__info">
             <h2 class="game-list-item__name">{{game.name}}</h2>
-            <h3 class="game-list-item__categories">{{game.genre}}</h3>
+            <h3 class="game-list-item__genres">{{game.genre}}</h3>
             <h4 class="game-list-item__company">{{game.company}}</h4>
         </div>
     </router-link>
@@ -51,7 +51,7 @@
             white-space: nowrap;
         }
 
-        &__categories {
+        &__genres {
             margin-bottom: 4px;
             overflow: hidden;
             text-overflow: ellipsis;

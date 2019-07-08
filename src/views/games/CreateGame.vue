@@ -55,8 +55,8 @@
             </fieldset>
 
             <fieldset>
-                <label for="categories">{{$t('create-game.categories')}}</label>
-                <input id="categories" v-model="game.categories"/>
+                <label for="genres">{{$t('create-game.genres')}}</label>
+                <input id="genres" v-model="game.genres"/>
             </fieldset>
 
             <fieldset>
@@ -64,7 +64,7 @@
                 <input id="score" type="number" v-model="game.score"/>
             </fieldset>
 
-            <button class="create-game__form-button" type="submit">Enviar</button>
+            <button class="create-game__form-button" type="submit">{{$t('create-game.title')}}</button>
         </form>
     </section>
 </template>
@@ -104,7 +104,7 @@
                         this.game = {
                             name: res.data.name,
                             description: res.data.description_raw,
-                            categories: res.data.genres.map(g => g.name).join(', '),
+                            genres: res.data.genres.map(g => g.name).join(', '),
                             releaseDate: res.data.released,
                             originalPlatform: res.data.platforms.map(p => p.platform.name).join(', '),
                             image: res.data.background_image,
