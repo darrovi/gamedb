@@ -25,40 +25,40 @@
 
             <div class="game__box">
                 <div>
-                    <p class="game__label">{{$t('create-game.release-date')}}</p>
+                    <p class="game__label">{{$t('game.release-date')}}</p>
                     <p>{{game.releaseDate || '---'}}</p>
                 </div>
                 <div>
-                    <p class="game__label">{{$t('create-game.original-platform')}}</p>
+                    <p class="game__label">{{$t('game.original-platform')}}</p>
                     <p>{{game.originalPlatform || '---'}}</p>
                 </div>
             </div>
 
             <div class="game__box">
                 <div>
-                    <p class="game__label">{{$t('create-game.publishers')}}</p>
+                    <p class="game__label">{{$t('game.publishers')}}</p>
                     <p>{{game.publishers || '---'}}</p>
                 </div>
                 <div>
-                    <p class="game__label">{{$t('create-game.developers')}}</p>
+                    <p class="game__label">{{$t('game.developers')}}</p>
                     <p>{{game.developers || '---'}}</p>
                 </div>
             </div>
 
             <div class="game__box">
                 <div>
-                    <p class="game__label">{{$t('create-game.genres')}}</p>
+                    <p class="game__label">{{$t('game.genres')}}</p>
                     <p>{{game.genres || '---'}}</p>
                 </div>
             </div>
 
             <div class="game__box">
                 <div>
-                    <p class="game__label">{{$t('create-game.serie')}}</p>
+                    <p class="game__label">{{$t('game.serie')}}</p>
                     <p>{{game.serie || '---'}}</p>
                 </div>
                 <div>
-                    <p class="game__label">{{$t('create-game.score')}}</p>
+                    <p class="game__label">{{$t('game.score')}}</p>
                     <p>{{game.score || '---'}}</p>
                 </div>
             </div>
