@@ -2,14 +2,13 @@
     <section class="game" v-if="game" @scroll="onScroll">
         <header class="game__header">
             <h1>{{game.name}}</h1>
-            <router-link to="/games">
+            <a @click="$router.go(-1)">
                 <img src="@/assets/icons/close--white.svg">
-            </router-link>
+            </a>
 
             <div id="game-image" class="game__image" v-bind:style="{ backgroundImage: 'url(' + game.image + ')' }">
                 <div class="game__image-gradient"></div>
             </div>
-
         </header>
 
         <div class="game__content" padding>

@@ -1,10 +1,15 @@
 <template>
-    <section padding has-navbar>
-        <h1>{{$t('playing.title')}}</h1>
+    <section padding has-navbar has-header class="playing">
+        <header header>
+            <h1>{{$t('playing.title')}}</h1>
+            <router-link to="/games/create">
+                <img src="@/assets/icons/add.svg">
+            </router-link>
+        </header>
 
-        <router-link to="/games/1">Game 1</router-link> |
-        <router-link to="/games/2">Game 2</router-link> |
-        <router-link to="/games/3">Game 3</router-link>
+        <div class="playing__list">
+            <GameListItem v-bind:game="game" v-for="game in games" v-bind:key="game.id"/>
+        </div>
 
         <Navbar/>
     </section>
@@ -12,12 +17,25 @@
 
 <script>
     import Navbar from "../components/Navbar";
+    import GameListItem from "../components/GameListItem";
+
     export default {
         name: "Playing",
-        components: {Navbar}
+        components: {Navbar, GameListItem},
+        computed: {
+            games() {
+                return this.$store.getters['games/playing']
+            }
+        }
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    .playing {
+        &__list {
+            > :not(:last-child) {
+                margin-bottom: 16px;
+            }
+        }
+    }
 </style>

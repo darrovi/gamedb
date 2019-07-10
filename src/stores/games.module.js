@@ -6,9 +6,11 @@ const state = {
 };
 
 const getters = {
-    all: (state) => state.games,
-    currentGame: (state) => state.games.find(g => g.id === state.currentGameId)
-};
+        all: (state) => state.games,
+        playing: (state) => state.games.filter(g => g.playing),
+        currentGame: (state) => state.games.find(g => g.id === state.currentGameId)
+    }
+;
 
 const mutations = {
     GET_GAMES: (state) => {

@@ -2,9 +2,9 @@
     <section padding has-header class="create-game">
         <header header>
             <h1>{{$t('create-game.title')}}</h1>
-            <router-link to="/games">
+            <a @click="$router.go(-1)">
                 <img src="@/assets/icons/close.svg">
-            </router-link>
+            </a>
         </header>
 
         <form @submit="createGame">
