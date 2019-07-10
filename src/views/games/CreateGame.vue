@@ -71,6 +71,7 @@
 <script>
     import {db} from '@/firebase/init';
     import axios from 'axios';
+    import moment from 'moment'
 
     export default {
         name: "CreateGame",
@@ -124,10 +125,9 @@
             },
             createGame(e) {
                 this.$store.commit('loading/start');
-                this.game.createdAt = new Date();
-                this.game.updatedAt = new Date();
-                this.game.completed = false;
-                this.game.playing = false;
+                this.game.createdAt = moment().format();
+                this.game.updatedAt = moment().format();
+                this.game.releaseDate = moment(this.game.releaseDate, 'YYYY/DD/MM').format();
 
                 db.collection('games').add(this.game).then((doc) => {
                     this.$store.commit('loading/stop');

@@ -4,9 +4,8 @@ import router from './router'
 import store from './stores/store'
 import i18n from './i18n'
 
-// noinspection ES6UnusedImports
-// eslint-disable-next-line no-unused-vars
-import firebaseApp from './firebase/init'
+import './firebase/init'
+import './filters/date.filters'
 
 Vue.config.productionTip = false;
 

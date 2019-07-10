@@ -1,5 +1,9 @@
 {
   "game": {
+    "playing": "Playing",
+    "finished": "Finished",
+    "from": "From",
+    "info": "Información general",
     "release-date": "Release date",
     "original-platform": "Original platform",
     "serie": "Serie",
