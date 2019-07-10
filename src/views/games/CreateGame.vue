@@ -16,9 +16,7 @@
                         <div class="double-bounce1"></div>
                         <div class="double-bounce2"></div>
                     </div>
-                    <li v-for="game in possibleGames" v-bind:key="game.id" @click="selectGame(game)">{{game.name}}
-                        ({{game.released}})
-                    </li>
+                    <li v-for="game in possibleGames" v-bind:key="game.id" @click="selectGame(game)">{{game.name}}</li>
                 </ul>
             </fieldset>
 
@@ -142,7 +140,7 @@
 
                 db.collection('games').add(this.game).then((doc) => {
                     this.$store.commit('loading/stop');
-                    this.$router.push({path: '/games/' + doc.id})
+                    this.$router.push({path: '/games/' + doc.id});
                 });
                 e.preventDefault();
             }

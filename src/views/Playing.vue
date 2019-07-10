@@ -2,9 +2,6 @@
     <section padding has-navbar has-header class="playing">
         <header header>
             <h1>{{$t('playing.title')}}</h1>
-            <router-link to="/games/create">
-                <img src="@/assets/icons/add.svg">
-            </router-link>
         </header>
 
         <div class="playing__list">
