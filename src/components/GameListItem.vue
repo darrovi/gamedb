@@ -41,7 +41,7 @@
         }
 
         &__image {
-            height: 88px;
+            /*height: 88px;*/
             width: 88px;
             background-position: center;
             background-size: cover;
