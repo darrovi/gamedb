@@ -70,6 +70,7 @@
                     <p class="game__label">{{$t('game.genres')}}</p>
                     <p>{{game.genres || '---'}}</p>
                 </div>
+                <div></div>
             </div>
 
             <div class="game__box">
@@ -81,6 +82,12 @@
                     <p class="game__label">{{$t('game.score')}}</p>
                     <p>{{game.score || '---'}}</p>
                 </div>
+            </div>
+
+            <div class="game__remove">
+                <button @click="removeGame">
+                    Eliminar juego
+                </button>
             </div>
         </div>
     </section>
@@ -123,16 +130,30 @@
                 event.target.remove();
             },
             markAsPlaying() {
+                this.$store.commit('loading/start');
                 db.collection('games').doc(this.game.id).update({
                     lastStarted: moment().format(),
                     playing: true
+                }).then(() => {
+                    this.$store.commit('loading/stop');
                 })
             },
             markAsFinished() {
+                this.$store.commit('loading/start');
                 db.collection('games').doc(this.game.id).update({
                     lastFinished: moment().format(),
                     playing: false,
                     completed: true
+                }).then(() => {
+                    this.$store.commit('loading/stop');
+                })
+
+            },
+            removeGame() {
+                this.$store.commit('loading/start');
+                db.collection('games').doc(this.game.id).delete().then(() => {
+                    this.$store.commit('loading/stop');
+                    this.$router.go(-1);
                 })
             }
         }
@@ -272,6 +293,16 @@
             font-weight: 100;
             font-size: 14px;
             margin-bottom: 4px;
+        }
+
+        &__remove {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+
+            button {
+                color: darkred;
+            }
         }
     }
 </style>
