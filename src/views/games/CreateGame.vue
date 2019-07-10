@@ -10,8 +10,12 @@
         <form @submit="createGame">
             <fieldset class="create-game__name-fieldset">
                 <label required for="name">{{$t('create-game.name')}}</label>
-                <input @keydown="onNameInput" id="name" required v-model="game.name" autocomplete="off"/>
+                <input @input="searchDebounce" id="name" required v-model="game.name" autocomplete="off"/>
                 <ul>
+                    <div v-if="loadingPossibleGames" class="create-game__spinner">
+                        <div class="double-bounce1"></div>
+                        <div class="double-bounce2"></div>
+                    </div>
                     <li v-for="game in possibleGames" v-bind:key="game.id" @click="selectGame(game)">{{game.name}}
                         ({{game.released}})
                     </li>
@@ -72,13 +76,17 @@
     import {db} from '@/firebase/init';
     import axios from 'axios';
     import moment from 'moment'
+    import SpinnerPage from "../../components/SpinnerPage";
 
     export default {
         name: "CreateGame",
+        components: {SpinnerPage},
         data() {
             return {
                 game: {},
-                possibleGames: []
+                loadingPossibleGames: false,
+                possibleGames: [],
+                searchTimeout: null
             }
         },
         computed: {
@@ -87,22 +95,24 @@
             }
         },
         methods: {
-            selectCustomGame() {
-                this.game = {};
-            },
-            onNameInput(event) {
-                if (event.key === 'Enter') {
-                    this.searchPossibleGames();
-                    event.preventDefault();
-                } else {
-                    this.possibleGames = [];
-                }
+            searchDebounce() {
+                this.loadingPossibleGames = true;
+                this.possibleGames = [];
 
+                if (this.searchTimeout) clearTimeout(this.searchTimeout);
+                this.searchTimeout = setTimeout(() => {
+                    if (this.game.name.trim()) {
+                        this.searchPossibleGames();
+                    } else {
+                        this.loadingPossibleGames = false;
+                    }
+                }, 1000);
             },
             searchPossibleGames() {
                 axios
                     .get('https://api.rawg.io/api/games?page_size=15&search=' + this.game.name)
                     .then(res => {
+                        this.loadingPossibleGames = false;
                         this.possibleGames = res.data.results
                     })
             },
@@ -173,6 +183,14 @@
                     max-height: 200px;
                 }
             }
+        }
+
+        &__spinner {
+            height: 30px;
+            width: 30px;
+            display: flex;
+            position: relative;
+            margin: 12px auto;
         }
 
         &__form-button {
