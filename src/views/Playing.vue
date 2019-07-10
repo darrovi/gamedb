@@ -4,8 +4,8 @@
             <h1>{{$t('playing.title')}}</h1>
         </header>
 
-        <div class="playing__list">
-            <GameListItem v-bind:game="game" v-for="game in games" v-bind:key="game.id"/>
+        <div class="playing__list-item">
+            <GameListItem class="playing__list-item" v-bind:game="game" v-for="game in games" v-bind:key="game.id"/>
         </div>
 
         <Navbar/>
@@ -29,10 +29,32 @@
 
 <style scoped lang="scss">
     .playing {
-        &__list {
-            > :not(:last-child) {
+        &__list-item {
+            animation-name: fadeIn;
+            animation-duration: 0.3s;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: both;
+
+            &:not(:last-child) {
                 margin-bottom: 16px;
             }
+
+            @for $i from 1 through 50 {
+                &:nth-child(#{$i}n) {
+                    animation-delay: #{$i * 0.1}s;
+                }
+            }
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
         }
     }
 </style>

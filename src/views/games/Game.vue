@@ -125,7 +125,8 @@
             this.$store.dispatch('games/setCurrentGame', this.$route.params.id);
         },
         mounted() {
-            document.addEventListener('scroll', this.onScroll)
+            document.addEventListener('scroll', this.onScroll);
+            window.scrollTo(0, 0);
         },
         destroyed() {
             document.removeEventListener('scroll', this.onScroll)
