@@ -146,7 +146,7 @@
             width: 100%;
             padding: 16px;
             box-sizing: border-box;
-            z-index: 900;
+            z-index: 700;
             position: fixed;
             top: 0;
             left: 0;

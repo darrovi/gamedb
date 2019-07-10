@@ -56,7 +56,7 @@
         left: 0;
         width: 100vw;
         background: black;
-        z-index: 900;
+        z-index: 700;
 
         ul {
             max-width: $body-max-width;
