@@ -127,7 +127,7 @@
                 this.$store.commit('loading/start');
                 this.game.createdAt = moment().format();
                 this.game.updatedAt = moment().format();
-                this.game.releaseDate = moment(this.game.releaseDate, 'YYYY/DD/MM').format();
+                this.game.releaseDate = moment(this.game.releaseDate, 'YYYY-MM-DD').format();
 
                 db.collection('games').add(this.game).then((doc) => {
                     this.$store.commit('loading/stop');
