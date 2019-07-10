@@ -176,6 +176,7 @@
 
         &__form-button {
             float: right;
+            margin: 16px 0;
         }
     }
 </style>

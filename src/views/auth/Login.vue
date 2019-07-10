@@ -8,7 +8,7 @@
         <div>
             <button> Botón normal</button>
             <button disabled> Botón deshabilitado</button>
-            <button danger> Botón danger</button>
+            <button secondary> Botón secondary</button>
         </div>
 
         <form>

@@ -80,7 +80,7 @@ button {
   color: $primary-color;
   text-transform: uppercase;
   padding: 8px 16px;
-  margin: 16px;
+  //margin: 16px;
   border-radius: 6px;
   transition: background .1s ease-in-out;
   cursor: pointer;
@@ -98,8 +98,9 @@ button {
     background: #212121;
   }
 
-  &[danger] {
+  &[secondary] {
     color: $text-color;
+    opacity: 0.7;
   }
 
   &:disabled {

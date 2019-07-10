@@ -1,4 +1,7 @@
 {
+  "common": {
+    "cancel": "Cancel"
+  },
   "game": {
     "playing": "Start playing",
     "finish": "Finish game",
@@ -10,7 +13,9 @@
     "publishers": "Publishers",
     "developers": "Developers",
     "genres": "Genres",
-    "score": "Score"
+    "score": "Score",
+    "remove-game": "Remove game",
+    "remove-game-description": "Do yo want to remove this game from your library?"
   },
   "games": {
     "title": "Library"
