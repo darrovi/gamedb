@@ -1,6 +1,7 @@
 class Game {
     /**
      * @param {string} id
+     * @param {string} rawgId
      * @param {string} userId
      * @param {string} name
      * @param {string} description
@@ -20,6 +21,7 @@ class Game {
      * @param {GameEntry} gameEntry
      */
     constructor(id,
+                rawgId,
                 userId,
                 name,
                 image,
@@ -39,6 +41,7 @@ class Game {
                 score,
                 gameEntry) {
         this.id = id;
+        this.rawgId = rawgId;
         this.userId = userId;
         this.name = name;
         this.image = image;

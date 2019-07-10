@@ -111,6 +111,7 @@
                     .get('https://api.rawg.io/api/games/' + game.slug)
                     .then(res => {
                         this.game = {
+                            rawgId: res.data.id,
                             name: res.data.name,
                             description: res.data.description,
                             genres: res.data.genres.map(g => g.name).join(', '),
