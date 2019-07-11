@@ -31,7 +31,11 @@
         name: "Register",
         data() {
             return {
-                user: {},
+                user: {
+                    email: '',
+                    name: '',
+                    password: ''
+                },
                 error: null
             }
         },

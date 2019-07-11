@@ -29,7 +29,7 @@
         data() {
             return {
                 user: {
-                    name: '',
+                    email: '',
                     password: ''
                 },
                 error: null
