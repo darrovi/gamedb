@@ -1,11 +1,17 @@
 {
   "common": {
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "accept": "Accept"
   },
   "game": {
     "playing": "Start playing",
     "finish": "Finish game",
-    "from": "From",
+    "stop-playing": "Stop playing",
+    "not-finish": "Not finished",
+    "not-finish-description": "Are you sure you want to mark the game as not finished?",
+    "finished-on": "Finished on",
+    "playing-since": "Playing since",
+    "last-played": "Played on",
     "info": "Información general",
     "release-date": "Release date",
     "original-platform": "Original platform",
