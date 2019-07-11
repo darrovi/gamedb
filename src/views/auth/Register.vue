@@ -37,24 +37,27 @@
         },
         methods: {
             register() {
+                this.$store.commit('loading/start');
                 this.error = null;
 
-                firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password).then(
-                    (res) => {
+                firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password)
+                    .then((res) => {
                         const user = {
                             name: this.user.name,
                             email: this.user.email,
                             userId: res.user.uid
                         };
-                        db.collection('users').add(user).then(
-                            () => {
-                                firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password).then(
-                                    () => {
+                        db.collection('users').add(user)
+                            .then(() => {
+                                firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password)
+                                    .then(() => {
+                                        this.$store.commit('loading/stop');
                                         this.$router.replace('games')
                                     });
                             })
                     })
                     .catch((err) => {
+                        this.$store.commit('loading/stop');
                         this.error = err.message;
                     })
             }

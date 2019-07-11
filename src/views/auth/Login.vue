@@ -12,9 +12,9 @@
             <input type="password" id="password" v-model="user.password"/>
         </fieldset>
 
-        <button>
-            <router-link to="/games">Login (to games)</router-link>
-        </button>
+        {{error}}
+
+        <button @click="login">Login</button>
         <button>
             <router-link to="/register">Register</router-link>
         </button>
@@ -22,11 +22,33 @@
 </template>
 
 <script>
+    import firebase from 'firebase'
+
     export default {
         name: "Login",
         data() {
             return {
-                user: {}
+                user: {
+                    name: '',
+                    password: ''
+                },
+                error: null
+            }
+        },
+        methods: {
+            login() {
+                this.$store.commit('loading/start');
+                this.error = null;
+
+                firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password)
+                    .then(() => {
+                        this.$store.commit('loading/stop');
+                        this.$router.replace('games')
+                    })
+                    .catch((err) => {
+                        this.$store.commit('loading/stop');
+                        this.error = err.message;
+                    })
             }
         }
     }

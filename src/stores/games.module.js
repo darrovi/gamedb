@@ -15,8 +15,9 @@ const getters = {
 };
 
 const mutations = {
-    GET_GAMES: (state) => {
+    GET_GAMES: (state, userId) => {
         let games = [];
+
         db.collection('games').orderBy('updatedAt', "desc").onSnapshot((snapshot) => {
             games = [];
             snapshot.forEach((doc) => {
@@ -94,8 +95,8 @@ const mutations = {
 };
 
 const actions = {
-    getGames({commit}) {
-        commit('GET_GAMES')
+    getGames({commit}, userId) {
+        commit('GET_GAMES', userId)
     },
     filterGames({commit}, filter) {
         commit('FILTER_GAMES', filter)

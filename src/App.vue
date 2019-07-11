@@ -15,11 +15,19 @@
 </style>
 <script>
     import SpinnerPage from "./components/SpinnerPage";
+    import firebase from 'firebase'
 
     export default {
         components: {SpinnerPage},
         created() {
-            this.$store.dispatch('games/getGames')
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    this.$store.dispatch('games/getGames', user.uid);
+                } else {
+                    console.log('User is not logged in.');
+                    this.$router.replace('login');
+                }
+            });
         }
     }
 </script>
