@@ -18,15 +18,21 @@ const mutations = {
     GET_GAMES: (state, userId) => {
         let games = [];
 
-        db.collection('games').orderBy('updatedAt', "desc").onSnapshot((snapshot) => {
+        db.collection('games').where('userId', '==', userId).onSnapshot((snapshot) => {
             games = [];
             snapshot.forEach((doc) => {
-                games.push({id: doc.id, ...doc.data()})
+                games.push({id: doc.id, ...doc.data()});
             });
+
+            games = games.sort((a, b) => moment(String(b.updatedAt)).diff(moment(String(a.updatedAt))));
 
             state.games = games;
             state.filteredGames = games;
         });
+    },
+    RESET_GAMES: (state) => {
+        state.games = [];
+        state.filteredGames = [];
     },
     FILTER_GAMES: (state, filter) => {
         // Check if the object is empty
@@ -97,6 +103,9 @@ const mutations = {
 const actions = {
     getGames({commit}, userId) {
         commit('GET_GAMES', userId)
+    },
+    resetGames({commit}) {
+        commit('RESET_GAMES')
     },
     filterGames({commit}, filter) {
         commit('FILTER_GAMES', filter)

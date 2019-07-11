@@ -73,12 +73,11 @@
 <script>
     import {db} from '@/firebase/init';
     import axios from 'axios';
+    import firebase from 'firebase'
     import moment from 'moment'
-    import SpinnerPage from "../../components/SpinnerPage";
 
     export default {
         name: "CreateGame",
-        components: {SpinnerPage},
         data() {
             return {
                 game: {},
@@ -133,19 +132,24 @@
 
             },
             createGame(e) {
-                this.$store.commit('loading/start');
-                this.game.createdAt = moment().format();
-                this.game.updatedAt = moment().format();
-                if (this.game.releaseDate) {
-                    this.game.releaseDate = moment(this.game.releaseDate, 'YYYY-MM-DD').format();
-                } else {
-                    delete this.game.releaseDate
+                const userId = firebase.auth().currentUser.uid;
+                if (userId) {
+                    this.$store.commit('loading/start');
+                    this.game.userId = userId;
+                    this.game.createdAt = moment().format();
+                    this.game.updatedAt = moment().format();
+                    if (this.game.releaseDate) {
+                        this.game.releaseDate = moment(this.game.releaseDate, 'YYYY-MM-DD').format();
+                    } else {
+                        delete this.game.releaseDate
+                    }
+
+                    db.collection('games').add(this.game).then((doc) => {
+                        this.$store.commit('loading/stop');
+                        this.$router.push({path: '/games/' + doc.id});
+                    });
                 }
 
-                db.collection('games').add(this.game).then((doc) => {
-                    this.$store.commit('loading/stop');
-                    this.$router.push({path: '/games/' + doc.id});
-                });
                 e.preventDefault();
             }
         }

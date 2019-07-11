@@ -17,6 +17,7 @@
         components: {Navbar},
         methods: {
             logout() {
+                this.$store.dispatch('games/resetGames');
                 firebase.auth().signOut();
                 this.$router.replace('login');
             }
