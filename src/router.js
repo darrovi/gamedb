@@ -11,6 +11,7 @@ import User from './views/User.vue'
 import Consoles from './views/consoles/Consoles.vue'
 import Console from './views/consoles/Console.vue'
 import CreateConsole from './views/consoles/CreateConsole.vue'
+import firebase from 'firebase'
 
 Vue.use(Router);
 
@@ -23,49 +24,9 @@ const router = new Router({
             redirect: 'login'
         },
         {
-            path: '/games',
-            name: 'games',
-            component: Games
-        },
-        {
-            path: '/games/create',
-            name: 'create-game',
-            component: CreateGame
-        },
-        {
-            path: '/games/:id',
-            name: 'game',
-            component: Game
-        },
-        {
-            path: '/playing',
-            name: 'playing',
-            component: Playing
-        },
-        {
-            path: '/consoles',
-            name: 'consoles',
-            component: Consoles
-        },
-        {
-            path: '/consoles/create',
-            name: 'console',
-            component: CreateConsole
-        },
-        {
-            path: '/consoles/:id',
-            name: 'create-console',
-            component: Console
-        },
-        {
             path: '/login',
             name: 'login',
             component: Login
-        },
-        {
-            path: '/user',
-            name: 'user',
-            component: User
         },
         {
             path: '/register',
@@ -73,11 +34,90 @@ const router = new Router({
             component: Register
         },
         {
+            path: '/games',
+            name: 'games',
+            component: Games,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/games/create',
+            name: 'create-game',
+            component: CreateGame,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/games/:id',
+            name: 'game',
+            component: Game,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/playing',
+            name: 'playing',
+            component: Playing,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/consoles',
+            name: 'consoles',
+            component: Consoles,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/consoles/create',
+            name: 'console',
+            component: CreateConsole,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/consoles/:id',
+            name: 'create-console',
+            component: Console,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/user',
+            name: 'user',
+            component: User,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
             path: '*',
             name: 'not-found',
             component: NotFound
         }
     ]
+});
+
+router.beforeEach((to, from, next) => {
+    const currentUser = firebase.auth().currentUser;
+    const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+
+    console.log(currentUser);
+
+    if (requiresAuth && !currentUser) {
+        next('login')
+    } else if (!requiresAuth && currentUser) {
+        next('games')
+    } else {
+        next()
+    }
 });
 
 export default router;

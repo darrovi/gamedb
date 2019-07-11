@@ -3,6 +3,18 @@
     "cancel": "Cancel",
     "accept": "Accept"
   },
+  "login": {
+    "title": "LOGIN",
+    "email": "Email",
+    "password": "Password"
+  },
+  "register": {
+    "title": "REGISTER",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "new-account": "Create new account"
+  },
   "game": {
     "playing": "Start playing",
     "finish": "Finish game",
