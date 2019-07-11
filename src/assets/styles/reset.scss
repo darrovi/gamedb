@@ -133,31 +133,38 @@ label {
 }
 
 input {
-  background: transparent;
-  border: none;
-  padding: 8px;
-  border-bottom: 1px solid $text-color;
-  color: $text-color;
-  font-size: 16px;
-  font-weight: 300;
-  width: 100%;
-  margin-bottom: 32px;
-  outline: none;
-  box-sizing: border-box;
-  border-radius: 0;
-  transition: border-bottom-color .3s ease-in-out;
-  font-family: 'Roboto', sans-serif;
+  &:not([type='checkbox']) {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    border-bottom: 1px solid $text-color;
+    color: $text-color;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    margin-bottom: 32px;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 0;
+    transition: border-bottom-color .3s ease-in-out;
+    font-family: 'Roboto', sans-serif;
 
-  &:focus {
-    border-bottom-color: $primary-color;
+    &:focus {
+      border-bottom-color: $primary-color;
+    }
+
+    &:invalid {
+      border-bottom-color: $danger-color;
+    }
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
   }
 
-  &:invalid {
-    border-bottom-color: $danger-color;
-  }
-
-  &:disabled {
-    pointer-events: none;
-    opacity: 0.5;
+  &[type='checkbox'] + label {
+    display: inline;
   }
 }
+

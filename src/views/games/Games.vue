@@ -8,12 +8,13 @@
 
             <img v-bind:src="'/icons/' + (searching ? 'close.svg': 'search.svg')" @click="toggleSearch">
 
-            <router-link  v-if="!searching" to="/games/create">
+            <router-link v-if="!searching" to="/games/create">
                 <img src="@/assets/icons/add.svg">
             </router-link>
-            <img v-else src="@/assets/icons/filter.svg">
-
+            <img v-else src="@/assets/icons/filter.svg" @click="toggleFilters">
         </header>
+
+        <GamesFilter v-bind:filter="filter" v-show="showFilters" v-on:close="toggleFilters" v-on:filter="onFilter()"/>
 
         <div class="games__list">
             <GameListItem class="games__list-item" v-bind:game="game" v-for="game in games" v-bind:key="game.id"/>
@@ -26,10 +27,11 @@
 <script>
     import Navbar from "../../components/Navbar";
     import GameListItem from "../../components/GameListItem";
+    import GamesFilter from "../../components/GamesFilter";
 
     export default {
         name: "Games",
-        components: {GameListItem, Navbar},
+        components: {GamesFilter, GameListItem, Navbar},
         computed: {
             games() {
                 return this.$store.getters['games/filtered']
@@ -38,6 +40,7 @@
         data() {
             return {
                 searching: false,
+                showFilters: false,
                 filter: {}
             }
         },
@@ -48,12 +51,20 @@
                     document.getElementById('searchInput').focus();
                 } else {
                     document.getElementById('searchInput').blur();
-                    this.filter.name = '';
+                    this.filter = {};
                     this.$store.dispatch('games/filterGames', this.filter);
                 }
             },
             search(value) {
                 this.filter.name = value;
+                this.$store.dispatch('games/filterGames', this.filter);
+            },
+            toggleFilters() {
+                this.showFilters = !this.showFilters;
+            },
+            onFilter() {
+                this.showFilters = false;
+                // this.filter = {...this.filter, ...filter};
                 this.$store.dispatch('games/filterGames', this.filter);
             }
         }

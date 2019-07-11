@@ -20,6 +20,9 @@
   "games": {
     "title": "Library"
   },
+  "games-filter": {
+    "title": "More filters"
+  },
   "create-game": {
     "title": "Add game",
     "name": "Name",
