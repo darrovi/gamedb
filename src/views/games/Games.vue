@@ -1,11 +1,18 @@
 <template>
     <section padding has-navbar has-header class="games">
-        <header header>
+        <header header v-bind:class="{ searching: searching }">
             <h1>{{$t('games.title')}}</h1>
-            <img src="@/assets/icons/search.svg">
-            <router-link to="/games/create">
+
+            <input id="searchInput" @input="search($event.target.value)" @keyup.esc="toggleSearch" v-model="filter.name"
+                   type="text" placeholder="Buscar...">
+
+            <img v-bind:src="'/icons/' + (searching ? 'close.svg': 'search.svg')" @click="toggleSearch">
+
+            <router-link  v-if="!searching" to="/games/create">
                 <img src="@/assets/icons/add.svg">
             </router-link>
+            <img v-else src="@/assets/icons/filter.svg">
+
         </header>
 
         <div class="games__list">
@@ -25,13 +32,65 @@
         components: {GameListItem, Navbar},
         computed: {
             games() {
-                return this.$store.getters['games/all']
+                return this.$store.getters['games/filtered']
+            }
+        },
+        data() {
+            return {
+                searching: false,
+                filter: {}
+            }
+        },
+        methods: {
+            toggleSearch() {
+                this.searching = !this.searching;
+                if (this.searching) {
+                    document.getElementById('searchInput').focus();
+                } else {
+                    document.getElementById('searchInput').blur();
+                    this.filter.name = '';
+                    this.$store.dispatch('games/filterGames', this.filter);
+                }
+            },
+            search(value) {
+                this.filter.name = value;
+                this.$store.dispatch('games/filterGames', this.filter);
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
+
+    [header] {
+        input {
+            transition: all 0.3s ease-in-out;
+            width: 0;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+        }
+
+        h1 {
+            transition: all 0.3s ease-in-out;
+            width: inherit;
+            opacity: 1;
+        }
+    }
+
+    .searching {
+        h1 {
+            width: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        input {
+            width: inherit;
+            opacity: 1;
+        }
+    }
+
     .games {
         &__list-item {
             &:not(:last-child) {
