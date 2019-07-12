@@ -6,6 +6,7 @@
 
         <h1>{{$t('register.title')}}</h1>
 
+        <ProfileImagePicker @selectedImage="onSelectedImage"/>
         <fieldset>
             <label for="name">{{$t('register.name')}}</label>
             <input type="text" id="name" v-model="user.name"/>
@@ -30,22 +31,27 @@
 <script>
     import firebase from 'firebase';
     import {db} from '@/firebase/init';
-
-    const DEFAULT_IMAGES_NUMBER = 2;
+    import ProfileImagePicker from "../../components/ProfileImagePicker";
+    import {DEFAULT_IMAGES_NUMBER} from '@/constants'
 
     export default {
         name: "Register",
+        components: {ProfileImagePicker},
         data() {
             return {
                 user: {
                     email: '',
                     name: '',
-                    password: ''
+                    password: '',
+                    selectedImage: ''
                 },
                 error: null
             }
         },
         methods: {
+            onSelectedImage(ref) {
+                this.selectedImage = ref;
+            },
             register() {
                 this.$store.commit('loading/start');
                 this.error = null;
@@ -55,7 +61,7 @@
                         const user = {
                             name: this.user.name,
                             email: this.user.email,
-                            imageRef: '_default_' + Math.floor((Math.random() * DEFAULT_IMAGES_NUMBER)) + '.png',
+                            imageRef: this.selectedImage || '_default_' + Math.floor((Math.random() * DEFAULT_IMAGES_NUMBER)) + '.png',
                             userId: res.user.uid
                         };
                         db.collection('users').add(user)

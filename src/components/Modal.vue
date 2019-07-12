@@ -38,6 +38,8 @@
 
         &__content {
             width: 80vw;
+            max-height: 80vh;
+            overflow: auto;
             background: $card-color;
             border-radius: 6px;
             padding: 16px;
@@ -66,7 +68,7 @@
     }
 
     .modal-fade-enter-active,
-    .modal-fade-leave-active{
+    .modal-fade-leave-active {
         transition: opacity .5s ease
     }
 
