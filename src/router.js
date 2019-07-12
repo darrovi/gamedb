@@ -7,7 +7,10 @@ import Games from './views/games/Games.vue'
 import Game from './views/games/Game.vue'
 import CreateGame from './views/games/CreateGame.vue'
 import Playing from './views/Playing.vue'
-import User from './views/User.vue'
+import User from './views/user/User.vue'
+import EditUser from './views/user/EditUser.vue'
+import Friends from './views/user/Friends.vue'
+import Statistics from './views/user/Statistics.vue'
 import Consoles from './views/consoles/Consoles.vue'
 import Console from './views/consoles/Console.vue'
 import CreateConsole from './views/consoles/CreateConsole.vue'
@@ -93,6 +96,30 @@ const router = new Router({
             path: '/user',
             name: 'user',
             component: User,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/user/edit',
+            name: 'edit-user',
+            component: EditUser,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/user/statistics',
+            name: 'statistics',
+            component: Statistics,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/user/friends',
+            name: 'friends',
+            component: Friends,
             meta: {
                 requiresAuth: true
             }

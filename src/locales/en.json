@@ -66,6 +66,14 @@
     "title": "Consoles"
   },
   "user": {
-    "title": "Profile"
+    "title": "Profile",
+    "logout": "Logout",
+    "logout-description": "Do you want to log out?",
+    "statistics": "Statistics",
+    "friends": "Friends"
+  },
+  "edit-user": {
+    "title": "Edit user",
+    "name": "Name"
   }
 }
