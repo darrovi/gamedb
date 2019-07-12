@@ -6,7 +6,12 @@
   "login": {
     "title": "LOGIN",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "forgot-password": "Forgot password?",
+    "login": "Login",
+    "or": "or",
+    "no-account": "You don't have an account?",
+    "create-one": "Create one here"
   },
   "register": {
     "title": "REGISTER",

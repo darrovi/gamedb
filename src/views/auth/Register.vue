@@ -1,5 +1,9 @@
 <template>
-    <section padding class="register">
+    <section padding class="register" v-bind:style="{backgroundImage: 'url(/imgs/login-background.png)'}">
+        <router-link class="register__back-button" to="/login">
+            <img src="@/assets/icons/back.svg">
+        </router-link>
+
         <h1>{{$t('register.title')}}</h1>
 
         <fieldset>
@@ -17,7 +21,7 @@
             <input type="password" id="password" v-model="user.password"/>
         </fieldset>
 
-        <p>{{error}}</p>
+        <p class="register__error" v-if="error">{{error}}</p>
 
         <button @click="register">{{$t('register.new-account')}}</button>
     </section>
@@ -71,16 +75,31 @@
 
 <style scoped lang="scss">
     .register {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
+        padding-top: 100px;
         height: 100vh;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        background-size: cover;
+        background-position: center;
+
+        &__back-button {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+        }
 
         h1 {
             text-align: center;
             font-size: 30px;
             color: $primary-color;
-            margin-bottom: 32px;
+            margin-bottom: 16px;
+        }
+
+        &__error {
+            color: $danger-color;
+            margin-bottom: 16px;
+            font-size: 14px;
         }
     }
 </style>
