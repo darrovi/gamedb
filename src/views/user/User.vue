@@ -15,7 +15,7 @@
             </div>
 
             <div class="user__profile-info">
-                <img class="user__profile-image" src="@/assets/imgs/user-placeholder.png">
+                <img class="user__profile-image" v-if="image" :src="image">
                 <h1>
                     {{user.name}}
                     <router-link :to="{name: 'edit-user'}">
@@ -55,7 +55,8 @@
         components: {Modal, Navbar},
         data() {
             return {
-                user: null,
+                user: {},
+                image: '',
                 showLogoutModal: false
             }
         },
@@ -71,6 +72,7 @@
                 .then((snapshot) => {
                     snapshot.forEach((doc) => {
                         this.user = doc.data();
+                        firebase.storage().ref('users/' + this.user.imageRef).getDownloadURL().then((url) => this.image = url)
                     });
                 });
         }

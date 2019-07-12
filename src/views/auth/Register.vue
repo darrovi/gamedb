@@ -31,6 +31,8 @@
     import firebase from 'firebase';
     import {db} from '@/firebase/init';
 
+    const DEFAULT_IMAGES_NUMBER = 2;
+
     export default {
         name: "Register",
         data() {
@@ -53,6 +55,7 @@
                         const user = {
                             name: this.user.name,
                             email: this.user.email,
+                            imageRef: '_default_' + Math.floor((Math.random() * DEFAULT_IMAGES_NUMBER)) + '.png',
                             userId: res.user.uid
                         };
                         db.collection('users').add(user)
