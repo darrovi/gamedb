@@ -42,7 +42,7 @@
                     this.defaultImages.push({
                         url: url,
                         ref: 'defaults/' + i + '.png'
-                    })
+                    });
                 })
             }
         }

@@ -21,9 +21,9 @@
             <button @click="login">{{$t('login.login')}}</button>
         </div>
 
-        <div class="login__others">
-            <p>{{$t('login.or')}}</p>
-        </div>
+        <!--<div class="login__others">-->
+            <!--<p>{{$t('login.or')}}</p>-->
+        <!--</div>-->
 
         <p class="login__register">{{$t('login.no-account')}}
             <router-link to="/register">{{$t('login.create-one')}}</router-link>
