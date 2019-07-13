@@ -7,7 +7,9 @@
             </a>
         </header>
 
-        <form @submit="editUser">
+        <form @submit="editUser" v-if="user">
+            <ProfileImagePicker @selectedImage="onSelectedImage" :userImageRef="user.imageRef"/>
+
             <fieldset>
                 <label for="name">{{$t('edit-user.name')}}</label>
                 <input id="name" v-model="user.name"/>
@@ -21,18 +23,25 @@
 <script>
     import {db} from '@/firebase/init';
     import firebase from "firebase"
+    import ProfileImagePicker from "../../components/ProfileImagePicker";
 
     export default {
         name: "EditUser",
+        components: {ProfileImagePicker},
         data() {
             return {
-                user: {}
+                user: null,
+                selectedImage: ''
             }
         },
         methods: {
+            onSelectedImage(ref) {
+                this.selectedImage = ref;
+            },
             editUser(e) {
                 this.$store.commit('loading/start');
                 db.collection('users').doc(this.user.id).update({
+                    imageRef: this.selectedImage || this.user.imageRef,
                     name: this.user.name
                 }).then(() => {
                     this.$router.go(-1);

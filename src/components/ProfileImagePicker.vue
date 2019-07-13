@@ -29,6 +29,7 @@
                 selectedImage: ''
             }
         },
+        props: ['userImageRef'],
         methods: {
             selectImage(image) {
                 this.showImagesModal = false;
@@ -39,10 +40,15 @@
         mounted() {
             for (let i = 0; i < DEFAULT_IMAGES_NUMBER; i++) {
                 firebase.storage().ref('users/defaults/' + i + '.png').getDownloadURL().then((url) => {
-                    this.defaultImages.push({
+                    const image = {
                         url: url,
                         ref: 'defaults/' + i + '.png'
-                    });
+                    };
+
+                    this.defaultImages.push(image);
+                    if (image.ref === this.userImageRef) {
+                        this.selectImage(image);
+                    }
                 })
             }
         }
