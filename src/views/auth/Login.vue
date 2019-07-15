@@ -1,7 +1,7 @@
 <template>
     <section padding class="login" v-bind:style="{backgroundImage: 'url(/imgs/login-background.png)'}">
         <!-- TODO logo de la app-->
-        <h1>{{$t('GameDB')}}</h1>
+        <h1>GameDB</h1>
 
         <fieldset>
             <label for="email">{{$t('login.email')}}</label>

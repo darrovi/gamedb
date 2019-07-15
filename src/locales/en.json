@@ -75,5 +75,12 @@
   "edit-user": {
     "title": "Edit user",
     "name": "Name"
+  },
+  "statistics": {
+    "title": "Statistics",
+    "games": "game | games",
+    "total": "You have purchased ",
+    "playing": "You are playing ",
+    "finished": "You have finished "
   }
 }
