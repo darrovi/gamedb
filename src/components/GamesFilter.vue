@@ -6,39 +6,47 @@
                 <img src="@/assets/icons/close.svg" @click="$emit('close')">
             </header>
 
-            <fieldset>
-                <input @input="checkPlaying($event.target.checked)" type="checkbox" id="playing"
-                       v-model="filter.playing"/>
-                <label for="playing">{{$t('games-filter.playing')}}</label>
-            </fieldset>
+            <div class="games-filter__flex games-filter__checks">
+                <div>
+                    <fieldset checkbox>
+                        <input @input="checkPlaying($event.target.checked)" type="checkbox" id="playing"
+                               v-model="filter.playing"/>
+                        <label for="playing"><span></span>{{$t('games-filter.playing')}}</label>
+                    </fieldset>
 
-            <fieldset>
-                <input @input="checkNotPlaying($event.target.checked)" type="checkbox" id="not-playing"
-                       v-model="filter.notPlaying"/>
-                <label for="not-playing">{{$t('games-filter.not-playing')}}</label>
-            </fieldset>
+                    <fieldset checkbox>
+                        <input @input="checkNotPlaying($event.target.checked)" type="checkbox" id="not-playing"
+                               v-model="filter.notPlaying"/>
+                        <label for="not-playing"><span></span>{{$t('games-filter.not-playing')}}</label>
+                    </fieldset>
+                </div>
 
-            <fieldset>
-                <input @input="checkFinished($event.target.checked)" type="checkbox" id="finished"
-                       v-model="filter.finished"/>
-                <label for="finished">{{$t('games-filter.finished')}}</label>
-            </fieldset>
+                <div>
+                    <fieldset checkbox>
+                        <input @input="checkFinished($event.target.checked)" type="checkbox" id="finished"
+                               v-model="filter.finished"/>
+                        <label for="finished"><span></span>{{$t('games-filter.finished')}}</label>
+                    </fieldset>
 
-            <fieldset>
-                <input @input="checkNotFinished($event.target.checked)" type="checkbox" id="not-finished"
-                       v-model="filter.notFinished"/>
-                <label for="not-finished">{{$t('games-filter.not-finished')}}</label>
-            </fieldset>
+                    <fieldset checkbox>
+                        <input @input="checkNotFinished($event.target.checked)" type="checkbox" id="not-finished"
+                               v-model="filter.notFinished"/>
+                        <label for="not-finished"><span></span>{{$t('games-filter.not-finished')}}</label>
+                    </fieldset>
+                </div>
+            </div>
 
-            <fieldset>
-                <label for="releaseDateFrom">{{$t('create-game.release-date-from')}}</label>
-                <input id="releaseDateFrom" type="date" v-model="filter.releaseDateFrom"/>
-            </fieldset>
+            <div class="games-filter__flex">
+                <fieldset>
+                    <label for="releaseDateFrom">{{$t('games-filter.release-date-from')}}</label>
+                    <input id="releaseDateFrom" type="date" v-model="filter.releaseDateFrom"/>
+                </fieldset>
 
-            <fieldset>
-                <label for="releaseDateTo">{{$t('create-game.release-date-to')}}</label>
-                <input id="releaseDateTo" type="date" v-model="filter.releaseDateTo"/>
-            </fieldset>
+                <fieldset>
+                    <label for="releaseDateTo">{{$t('games-filter.release-date-to')}}</label>
+                    <input id="releaseDateTo" type="date" v-model="filter.releaseDateTo"/>
+                </fieldset>
+            </div>
 
             <button type="button" secondary @click="close">Clear filters</button>
             <button type="button" @click="onFilter">Filter!</button>
@@ -93,6 +101,26 @@
         height: 100vh;
         z-index: 900;
         background: $background-color;
+
+        &__checks {
+            margin-bottom: 32px;
+        }
+
+        &__flex {
+            display: flex;
+
+            > * {
+                flex: 0 1 calc(50% - 8px);
+
+                &:first-child {
+                    margin-right: 8px;
+                }
+
+                &:last-child {
+                    margin-left: 8px;
+                }
+            }
+        }
     }
 
     .filter-enter,

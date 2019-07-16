@@ -44,7 +44,13 @@
     "title": "Library"
   },
   "games-filter": {
-    "title": "Filters"
+    "title": "Filters",
+    "playing": "Playing",
+    "not-playing": "Not playing",
+    "finished": "Finished",
+    "not-finished": "Not finished",
+    "release-date-from": "Release date (from)",
+    "release-date-to": "Release date (to)"
   },
   "create-game": {
     "title": "Add game",

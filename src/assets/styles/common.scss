@@ -45,3 +45,42 @@
     }
   }
 }
+
+[checkbox] {
+
+  input {
+    display: none
+  }
+
+  input + label {
+    display: flex;
+
+    span {
+      background: $text-color;
+      height: 16px;
+      width: 16px;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 2px;
+      margin-right: 4px;
+    }
+  }
+
+  input:checked + label {
+    span {
+      &::after {
+        content: '';
+        display: block;
+        width: 3px;
+        height: 9px;
+        border: solid $background-color;
+        border-width: 0 3px 3px 0;
+        margin-left: 5px;
+        margin-top: 1px;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
