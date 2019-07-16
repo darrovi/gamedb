@@ -20,9 +20,12 @@
     "password": "Password",
     "new-account": "Create new account",
     "add-codes": "También puedes añadir tus códigos de amigos",
-    "play-station-id": "Play Station Id",
-    "x-box-id": "Xbox Id",
-    "nintendo-id": "Nintendo Id"
+    "play-station-id": "PlayStation Network",
+    "x-box-id": "Xbox Live",
+    "nintendo-id": "Nintendo ID",
+    "steam-id": "Steam",
+    "origin-id": "Origin",
+    "battlenet-id": "Battlenet"
   },
   "game": {
     "playing": "Start playing",

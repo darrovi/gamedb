@@ -15,6 +15,10 @@
                 <input id="name" v-model="user.name"/>
             </fieldset>
 
+            <fieldset>
+                <label for="nintendoId">{{$t('register.nintendo-id')}}</label>
+                <input type="text" id="nintendoId" v-model="user.nintendoId"/>
+            </fieldset>
 
             <fieldset>
                 <label for="playStationId">{{$t('register.play-station-id')}}</label>
@@ -27,8 +31,18 @@
             </fieldset>
 
             <fieldset>
-                <label for="nintendoId">{{$t('register.nintendo-id')}}</label>
-                <input type="text" id="nintendoId" v-model="user.nintendoId"/>
+                <label for="steamId">{{$t('register.steam-id')}}</label>
+                <input type="text" id="steamId" v-model="user.steamId"/>
+            </fieldset>
+
+            <fieldset>
+                <label for="originId">{{$t('register.origin-id')}}</label>
+                <input type="text" id="originId" v-model="user.originId"/>
+            </fieldset>
+
+            <fieldset>
+                <label for="battlenetId">{{$t('register.battlenet-id')}}</label>
+                <input type="text" id="battlenetId" v-model="user.battlenetId"/>
             </fieldset>
 
             <button class="edit-user__form-button" type="submit">{{$t('edit-user.title')}}</button>
@@ -62,9 +76,12 @@
                 db.collection('users').doc(this.user.id).update({
                     imageRef: this.selectedImage || this.user.imageRef,
                     name: this.user.name,
-                    playStationId: this.user.playStationId,
-                    xBoxId: this.user.xBoxId,
-                    nintendoId: this.user.nintendoId
+                    playStationId: this.user.playStationId || '',
+                    xBoxId: this.user.xBoxId || '',
+                    nintendoId: this.user.nintendoId || '',
+                    steamId: this.user.steamId || '',
+                    originId: this.user.originId || '',
+                    battlenetId: this.user.battlenetId || ''
                 }).then(() => {
                     this.$router.go(-1);
                     this.$store.commit('loading/stop');

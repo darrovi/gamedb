@@ -25,7 +25,7 @@ const actions = {
         db.collection('users').where('userId', '==', userId).get()
             .then((snapshot) => {
                 snapshot.forEach((doc) => {
-                    this.user = {id: userId, ...doc.data()};
+                    this.user = {id: doc.id, ...doc.data()};
                     firebase.storage().ref('users/' + this.user.imageRef).getDownloadURL().then((url) => {
                         this.user.image = url;
                         commit('SET_USER', this.user)

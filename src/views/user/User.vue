@@ -1,5 +1,5 @@
 <template>
-    <section padding class="user">
+    <section padding has-navbar class="user">
         <div class="user__header">
             <img @click="showLogoutModal = true" src="@/assets/icons/logout.svg"/>
 
@@ -22,7 +22,42 @@
                         <img src="@/assets/icons/edit.svg"/>
                     </router-link>
                 </h1>
-                <h3>{{user.email}}</h3>
+                <!-- Play Station Network, xBox live, Nintendo ID, Steam, Battlenet, Origin -->
+                <div class="user__id" v-if="user.nintendoId">
+                    <img src="@/assets/icons/user-ids/nintendo.svg"/>
+                    <p>{{user.nintendoId}}</p>
+                    <button @click="copy(user.nintendoId, $event)">Copy</button>
+                </div>
+
+                <div class="user__id" v-if="user.playStationId">
+                    <img src="@/assets/icons/user-ids/playstation.svg"/>
+                    <p>{{user.playStationId}}</p>
+                    <button @click="copy(user.playStationId, $event)">Copy</button>
+                </div>
+
+                <div class="user__id" v-if="user.xBoxId">
+                    <img src="@/assets/icons/user-ids/xbox.svg"/>
+                    <p>{{user.xBoxId}}</p>
+                    <button @click="copy(user.xBoxId, $event)">Copy</button>
+                </div>
+
+                <div class="user__id" v-if="user.steamId">
+                    <img src="@/assets/icons/user-ids/steam.svg"/>
+                    <p>{{user.steamId}}</p>
+                    <button @click="copy(user.steamId, $event)">Copy</button>
+                </div>
+
+                <div class="user__id" v-if="user.originId">
+                    <img src="@/assets/icons/user-ids/origin.svg"/>
+                    <p>{{user.originId}}</p>
+                    <button @click="copy(user.originId, $event)">Copy</button>
+                </div>
+
+                <div class="user__id" v-if="user.battlenetId">
+                    <img src="@/assets/icons/user-ids/battlenet.svg"/>
+                    <p>{{user.battlenetId}}</p>
+                    <button @click="copy(user.battlenetId, $event)">Copy</button>
+                </div>
             </div>
 
             <div class="user__buttons">
@@ -65,6 +100,33 @@
             logout() {
                 this.$store.dispatch('games/resetGames');
                 this.$store.dispatch('auth/logout');
+            },
+            copy(text, event) {
+                const textArea = document.createElement('textArea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+
+                let range, selection;
+
+                if (navigator.userAgent.match(/ipad|iphone/i)) {
+                    range = document.createRange();
+                    range.selectNodeContents(textArea);
+                    selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                    textArea.setSelectionRange(0, 999999);
+                } else {
+                    textArea.select();
+                }
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                event.target.innerHTML = 'Copied!';
+                event.target.style.color = '#c1c1c1';
+                setTimeout(() => {
+                    event.target.innerHTML = 'Copy';
+                    event.target.style.color = '';
+                }, 2000)
             }
         }
     }
@@ -103,6 +165,22 @@
             margin: 16px 0;
         }
 
+        &__id {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            border-bottom: 1px solid $card-color;
+
+            img {
+                height: 16px;
+                margin-right: 8px;
+            }
+
+            button {
+                transition: color 0.2s ease-in-out;
+                margin-left: auto;
+            }
+        }
         &__buttons {
             display: flex;
             justify-content: space-around;
