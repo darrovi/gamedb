@@ -1,21 +1,21 @@
 <template>
     <section padding class="user">
+        <div class="user__header">
+            <img @click="showLogoutModal = true" src="@/assets/icons/logout.svg"/>
+
+            <Modal v-show="showLogoutModal">
+                <h2 slot="header">{{$t('user.logout')}}</h2>
+                <p slot="body">{{$t('user.logout-description')}}</p>
+                <template slot="buttons">
+                    <button secondary @click="showLogoutModal = false">{{$t('common.cancel')}}</button>
+                    <button @click="logout">{{$t('user.logout')}}</button>
+                </template>
+            </Modal>
+        </div>
+
         <template v-if="user">
-            <div class="user__header">
-                <img @click="showLogoutModal = true" src="@/assets/icons/logout.svg"/>
-
-                <Modal v-show="showLogoutModal">
-                    <h2 slot="header">{{$t('user.logout')}}</h2>
-                    <p slot="body">{{$t('user.logout-description')}}</p>
-                    <template slot="buttons">
-                        <button secondary @click="showLogoutModal = false">{{$t('common.cancel')}}</button>
-                        <button @click="logout">{{$t('user.logout')}}</button>
-                    </template>
-                </Modal>
-            </div>
-
             <div class="user__profile-info">
-                <img class="user__profile-image" v-if="image" :src="image">
+                <img class="user__profile-image" v-if="user.image" :src="user.image">
                 <h1>
                     {{user.name}}
                     <router-link :to="{name: 'edit-user'}">
@@ -45,9 +45,7 @@
 </template>
 
 <script>
-    import {db} from '@/firebase/init';
     import Navbar from "../../components/Navbar";
-    import firebase from "firebase"
     import Modal from "../../components/Modal";
 
     export default {
@@ -55,26 +53,19 @@
         components: {Modal, Navbar},
         data() {
             return {
-                user: {},
-                image: '',
                 showLogoutModal: false
+            }
+        },
+        computed: {
+            user() {
+                return this.$store.getters['auth/user'];
             }
         },
         methods: {
             logout() {
                 this.$store.dispatch('games/resetGames');
-                firebase.auth().signOut();
-                this.$router.replace('login');
+                this.$store.dispatch('auth/logout');
             }
-        },
-        mounted() {
-            db.collection('users').where('userId', '==', firebase.auth().currentUser.uid).get()
-                .then((snapshot) => {
-                    snapshot.forEach((doc) => {
-                        this.user = doc.data();
-                        firebase.storage().ref('users/' + this.user.imageRef).getDownloadURL().then((url) => this.image = url)
-                    });
-                });
         }
     }
 </script>

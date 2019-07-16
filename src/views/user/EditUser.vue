@@ -38,7 +38,6 @@
 
 <script>
     import {db} from '@/firebase/init';
-    import firebase from "firebase"
     import ProfileImagePicker from "../../components/ProfileImagePicker";
 
     export default {
@@ -46,8 +45,12 @@
         components: {ProfileImagePicker},
         data() {
             return {
-                user: null,
                 selectedImage: ''
+            }
+        },
+        computed: {
+            user() {
+                return this.$store.getters['auth/user'];
             }
         },
         methods: {
@@ -68,14 +71,6 @@
                 });
                 e.preventDefault();
             }
-        },
-        mounted() {
-            db.collection('users').where('userId', '==', firebase.auth().currentUser.uid).get()
-                .then((snapshot) => {
-                    snapshot.forEach((doc) => {
-                        this.user = {id: doc.id, ...doc.data()};
-                    });
-                });
         }
     }
 </script>

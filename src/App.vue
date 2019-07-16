@@ -22,6 +22,7 @@
         created() {
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
+                    this.$store.dispatch('auth/setUser', user.uid);
                     this.$store.dispatch('games/getGames', user.uid);
                 } else {
                     console.log('User is not logged in.');

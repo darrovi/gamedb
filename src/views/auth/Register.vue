@@ -78,11 +78,11 @@
                         const user = {
                             name: this.user.name,
                             email: this.user.email,
-                            imageRef: this.selectedImage || '_default_' + Math.floor((Math.random() * DEFAULT_IMAGES_NUMBER)) + '.png',
+                            imageRef: this.selectedImage || 'defaults/' + Math.floor((Math.random() * DEFAULT_IMAGES_NUMBER)) + '.png',
                             userId: res.user.uid,
-                            playStationId: this.user.playStationId,
-                            xBoxId: this.user.xBoxId,
-                            nintendoId: this.user.nintendoId
+                            playStationId: this.user.playStationId || '',
+                            xBoxId: this.user.xBoxId || '',
+                            nintendoId: this.user.nintendoId || ''
                         };
                         db.collection('users').add(user)
                             .then(() => {
@@ -91,6 +91,10 @@
                                         this.$store.commit('loading/stop');
                                         this.$router.replace('games')
                                     });
+                            })
+                            .catch((err) => {
+                                this.$store.commit('loading/stop');
+                                this.error = err.message;
                             })
                     })
                     .catch((err) => {

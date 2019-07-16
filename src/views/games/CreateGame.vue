@@ -132,7 +132,7 @@
 
             },
             createGame(e) {
-                const userId = firebase.auth().currentUser.uid;
+                const userId = this.$store.getters['auth/userId'];
                 if (userId) {
                     this.$store.commit('loading/start');
                     this.game.userId = userId;
