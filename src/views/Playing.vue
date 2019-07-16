@@ -4,6 +4,11 @@
             <h1>{{$t('playing.title')}}</h1>
         </header>
 
+        <div class="playing__no-results" v-if="!games.length">
+            <img src="@/assets/imgs/no-results.png">
+            <p>{{$t('playing.no-results')}}</p>
+        </div>
+
         <div class="playing__list-item">
             <GameListItem class="playing__list-item" v-bind:game="game" v-for="game in games" v-bind:key="game.id"/>
         </div>
@@ -33,6 +38,10 @@
             &:not(:last-child) {
                 margin-bottom: 16px;
             }
+        }
+
+        &__no-results {
+            text-align: center;
         }
     }
 </style>

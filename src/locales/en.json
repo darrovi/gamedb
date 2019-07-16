@@ -41,7 +41,10 @@
     "remove-game-description": "Do yo want to remove this game from your library?"
   },
   "games": {
-    "title": "Library"
+    "title": "Library",
+    "no-results-search": "No hemos encontrado ni mierdas",
+    "no-results": "No tienes ningún juego añadido a la librería",
+    "add-game": "Añade un nuevo juego"
   },
   "games-filter": {
     "title": "Filters",
@@ -66,7 +69,8 @@
     "score": "Score (0-100)"
   },
   "playing": {
-    "title": "Playing"
+    "title": "Playing",
+    "no-results": "¡¡Bien hecho!! No estás perdiendo el tiempo con jueguecitos"
   },
   "consoles": {
     "title": "Consoles"

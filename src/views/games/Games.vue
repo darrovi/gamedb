@@ -16,6 +16,15 @@
 
         <GamesFilter v-bind:filter="filter" v-show="showFilters" v-on:close="toggleFilters" v-on:filter="onFilter()"/>
 
+        <div class="games__no-results" v-if="!games.length">
+            <img src="@/assets/imgs/no-results.png">
+            <p v-if="searching">{{$t('games.no-results-search')}}</p>
+            <template v-if="!searching">
+                <p>{{$t('games.no-results')}}</p>
+                <router-link to="/games/create" tag="button">{{$t('games.add-game')}}</router-link>
+            </template>
+        </div>
+
         <div class="games__list">
             <GameListItem class="games__list-item" v-bind:game="game" v-for="game in games" v-bind:key="game.id"/>
         </div>
@@ -106,6 +115,14 @@
         &__list-item {
             &:not(:last-child) {
                 margin-bottom: 16px;
+            }
+        }
+
+        &__no-results {
+            text-align: center;
+
+            button {
+                margin-top: 16px;
             }
         }
     }
