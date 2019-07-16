@@ -15,6 +15,22 @@
                 <input id="name" v-model="user.name"/>
             </fieldset>
 
+
+            <fieldset>
+                <label for="playStationId">{{$t('register.play-station-id')}}</label>
+                <input type="text" id="playStationId" v-model="user.playStationId"/>
+            </fieldset>
+
+            <fieldset>
+                <label for="xBoxId">{{$t('register.x-box-id')}}</label>
+                <input type="text" id="xBoxId" v-model="user.xBoxId"/>
+            </fieldset>
+
+            <fieldset>
+                <label for="nintendoId">{{$t('register.nintendo-id')}}</label>
+                <input type="text" id="nintendoId" v-model="user.nintendoId"/>
+            </fieldset>
+
             <button class="edit-user__form-button" type="submit">{{$t('edit-user.title')}}</button>
         </form>
     </section>
@@ -42,7 +58,10 @@
                 this.$store.commit('loading/start');
                 db.collection('users').doc(this.user.id).update({
                     imageRef: this.selectedImage || this.user.imageRef,
-                    name: this.user.name
+                    name: this.user.name,
+                    playStationId: this.user.playStationId,
+                    xBoxId: this.user.xBoxId,
+                    nintendoId: this.user.nintendoId
                 }).then(() => {
                     this.$router.go(-1);
                     this.$store.commit('loading/stop');

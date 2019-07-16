@@ -22,6 +22,23 @@
             <input type="password" id="password" v-model="user.password"/>
         </fieldset>
 
+        <h2>{{$t('register.add-codes')}}</h2>
+
+        <fieldset>
+            <label for="playStationId">{{$t('register.play-station-id')}}</label>
+            <input type="text" id="playStationId" v-model="user.playStationId"/>
+        </fieldset>
+
+        <fieldset>
+            <label for="xBoxId">{{$t('register.x-box-id')}}</label>
+            <input type="text" id="xBoxId" v-model="user.xBoxId"/>
+        </fieldset>
+
+        <fieldset>
+            <label for="nintendoId">{{$t('register.nintendo-id')}}</label>
+            <input type="text" id="nintendoId" v-model="user.nintendoId"/>
+        </fieldset>
+
         <p class="register__error" v-if="error">{{error}}</p>
 
         <button @click="register">{{$t('register.new-account')}}</button>
@@ -62,7 +79,10 @@
                             name: this.user.name,
                             email: this.user.email,
                             imageRef: this.selectedImage || '_default_' + Math.floor((Math.random() * DEFAULT_IMAGES_NUMBER)) + '.png',
-                            userId: res.user.uid
+                            userId: res.user.uid,
+                            playStationId: this.user.playStationId,
+                            xBoxId: this.user.xBoxId,
+                            nintendoId: this.user.nintendoId
                         };
                         db.collection('users').add(user)
                             .then(() => {
@@ -103,6 +123,10 @@
             font-size: 30px;
             color: $primary-color;
             margin-bottom: 16px;
+        }
+
+        h2 {
+            margin: 32px 0;
         }
 
         &__error {

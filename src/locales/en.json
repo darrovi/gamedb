@@ -18,7 +18,11 @@
     "name": "Name",
     "email": "Email",
     "password": "Password",
-    "new-account": "Create new account"
+    "new-account": "Create new account",
+    "add-codes": "También puedes añadir tus códigos de amigos",
+    "play-station-id": "Play Station Id",
+    "x-box-id": "Xbox Id",
+    "nintendo-id": "Nintendo Id"
   },
   "game": {
     "playing": "Start playing",
