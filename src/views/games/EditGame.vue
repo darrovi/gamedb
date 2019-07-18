@@ -1,23 +1,16 @@
 <template>
-    <section padding has-header class="create-game">
+    <section padding has-header class="edit-game">
         <header header>
-            <h1>{{$t('create-game.title')}}</h1>
+            <h1>{{$t('edit-game.title')}}</h1>
             <a @click="$router.go(-1)">
                 <img src="@/assets/icons/close.svg">
             </a>
         </header>
 
-        <form @submit="createGame">
-            <fieldset class="create-game__name-fieldset">
+        <form @submit="editGame">
+            <fieldset class="edit-game__name-fieldset">
                 <label required for="name">{{$t('create-game.name')}}</label>
-                <input @input="searchDebounce" id="name" required v-model="game.name" autocomplete="off"/>
-                <ul>
-                    <div v-if="loadingPossibleGames" class="create-game__spinner">
-                        <div class="double-bounce1"></div>
-                        <div class="double-bounce2"></div>
-                    </div>
-                    <li v-for="game in possibleGames" v-bind:key="game.id" @click="selectGame(game)">{{game.name}}</li>
-                </ul>
+                <input id="name" required v-model="game.name" autocomplete="off"/>
             </fieldset>
 
             <fieldset>
@@ -65,87 +58,37 @@
                 <input id="score" type="number" min="0" max="100" v-model="game.score"/>
             </fieldset>
 
-            <button class="create-game__form-button" type="submit">{{$t('create-game.title')}}</button>
+            <button class="edit-game__form-button" type="submit">{{$t('edit-game.title')}}</button>
         </form>
     </section>
 </template>
 
 <script>
     import {db} from '@/firebase/init';
-    import axios from 'axios';
     import moment from 'moment'
 
     export default {
-        name: "CreateGame",
+        name: "EditGame",
         data() {
-            return {
-                game: {},
-                loadingPossibleGames: false,
-                possibleGames: [],
-                searchTimeout: null
-            }
+            return {}
         },
         computed: {
             isFormValid() {
                 return true
+            },
+            game() {
+                return this.$store.getters['games/currentGame']
             }
         },
         methods: {
-            searchDebounce() {
-                this.loadingPossibleGames = true;
-                this.possibleGames = [];
+            editGame(e) {
+                this.$store.commit('loading/start');
+                this.game.updatedAt = moment().format();
 
-                if (this.searchTimeout) clearTimeout(this.searchTimeout);
-                this.searchTimeout = setTimeout(() => {
-                    if (this.game.name.trim()) {
-                        this.searchPossibleGames();
-                    } else {
-                        this.loadingPossibleGames = false;
-                    }
-                }, 1000);
-            },
-            searchPossibleGames() {
-                axios
-                    .get('https://api.rawg.io/api/games?page_size=15&search=' + this.game.name)
-                    .then(res => {
-                        this.loadingPossibleGames = false;
-                        this.possibleGames = res.data.results
-                    })
-            },
-            selectGame(game) {
-                axios
-                    .get('https://api.rawg.io/api/games/' + game.slug)
-                    .then(res => {
-                        this.game = {
-                            rawgId: res.data.id,
-                            name: res.data.name,
-                            description: res.data.description,
-                            genres: res.data.genres.map(g => g.name).join(', '),
-                            releaseDate: res.data.released,
-                            originalPlatform: res.data.platforms.map(p => p.platform.name).join(', '),
-                            image: res.data.background_image,
-                            publishers: res.data.publishers.map(p => p.name).join(', '),
-                            developers: res.data.developers.map(d => d.name).join(', ')
-                        };
-                    })
-
-            },
-            createGame(e) {
-                const userId = this.$store.getters['auth/userId'];
-                if (userId) {
-                    this.$store.commit('loading/start');
-                    this.game.userId = userId;
-                    this.game.createdAt = moment().format();
-                    this.game.updatedAt = moment().format();
-                    if (! this.game.releaseDate) {
-                        delete this.game.releaseDate
-                    }
-
-                    db.collection('games').add(this.game).then((doc) => {
-                        this.$store.commit('loading/stop');
-                        this.$router.push({path: '/games/' + doc.id});
-                    });
-                }
+                db.collection('games').doc(this.game.id).set(this.game).then(() => {
+                    this.$store.commit('loading/stop');
+                    this.$router.go(-1);
+                });
 
                 e.preventDefault();
             }
@@ -154,7 +97,7 @@
 </script>
 
 <style scoped lang="scss">
-    .create-game {
+    .edit-game {
 
         &__name-fieldset {
             position: relative;

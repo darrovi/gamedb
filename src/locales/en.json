@@ -45,6 +45,7 @@
     "genres": "Genres",
     "score": "Score",
     "remove-game": "Remove game",
+    "edit-game": "Edit game",
     "remove-game-description": "Do yo want to remove this game from your library?"
   },
   "games": {
@@ -61,6 +62,9 @@
     "not-finished": "Not finished",
     "release-date-from": "Release date (from)",
     "release-date-to": "Release date (to)"
+  },
+  "edit-game": {
+    "title": "Edit game"
   },
   "create-game": {
     "title": "Add game",

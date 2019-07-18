@@ -5,6 +5,7 @@ import Register from './views/auth/Register.vue'
 import NotFound from './views/NotFound.vue'
 import Games from './views/games/Games.vue'
 import Game from './views/games/Game.vue'
+import EditGame from './views/games/EditGame.vue'
 import CreateGame from './views/games/CreateGame.vue'
 import Playing from './views/Playing.vue'
 import User from './views/user/User.vue'
@@ -48,6 +49,14 @@ const router = new Router({
             path: '/games/create',
             name: 'create-game',
             component: CreateGame,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/games/:id/edit',
+            name: 'edit-game',
+            component: EditGame,
             meta: {
                 requiresAuth: true
             }

@@ -1,5 +1,5 @@
 <template>
-    <router-link v-bind:to="'/games/' + game.id" tag="article" class="game-list-item">
+    <router-link :to="'/games/' + game.id" tag="article" class="game-list-item">
         <div class="game-list-item__image" v-bind:style="{ backgroundImage: 'url(' + game.image + ')' }"></div>
         <div class="game-list-item__info">
             <h2 class="game-list-item__name">
