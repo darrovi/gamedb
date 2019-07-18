@@ -27,7 +27,7 @@
 
             <fieldset>
                 <label for="description">{{$t('create-game.description')}}</label>
-                <input id="description" v-model="game.description"/>
+                <textarea id="description" v-model="game.description"></textarea>
             </fieldset>
 
             <fieldset>
