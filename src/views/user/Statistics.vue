@@ -24,6 +24,9 @@
             <p>
                 {{$t('statistics.finished')}} <b>{{finishedGames}}</b> {{$tc('statistics.games', finishedGames)}}
             </p>
+            <p>
+                {{$t('statistics.score')}} <b>{{averageScore}}</b> {{$tc('statistics.points', averageScore)}}
+            </p>
         </div>
     </section>
 </template>
@@ -51,6 +54,15 @@
             },
             finishedGames() {
                 return this.games.filter(g => g.completed).length;
+            },
+            averageScore() {
+                let average = 0;
+
+                for (const game of this.games) {
+                    average += Number(game.score);
+                }
+
+                return Math.round(average / this.games.length * 100) / 100;
             }
         },
         methods: {

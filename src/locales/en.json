@@ -102,6 +102,8 @@
     "games": "game | games",
     "total": "You have purchased ",
     "playing": "You are playing ",
-    "finished": "You have finished "
+    "finished": "You have finished ",
+    "score": "The average score of your games is",
+    "points": "point | points"
   }
 }
