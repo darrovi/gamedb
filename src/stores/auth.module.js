@@ -7,7 +7,7 @@ const state = {
 
 const getters = {
     user: (state) => state.user,
-    userId: (state) => state.user.id
+    userId: (state) => state.user.userId
 };
 
 const mutations = {

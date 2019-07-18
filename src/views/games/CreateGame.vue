@@ -73,7 +73,6 @@
 <script>
     import {db} from '@/firebase/init';
     import axios from 'axios';
-    import firebase from 'firebase'
     import moment from 'moment'
 
     export default {

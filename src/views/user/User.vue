@@ -21,6 +21,7 @@
                     <router-link :to="{name: 'edit-user'}">
                         <img src="@/assets/icons/edit.svg"/>
                     </router-link>
+
                 </h1>
                 <!-- Play Station Network, xBox live, Nintendo ID, Steam, Battlenet, Origin -->
                 <div class="user__id" v-if="user.nintendoId">
