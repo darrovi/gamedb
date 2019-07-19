@@ -2,7 +2,7 @@
     <section class="game" v-if="game" @scroll="onScroll">
         <header class="game__header">
             <a @click="$router.go(-1)">
-                <img only-margin-left src="@/assets/icons/back.svg">
+                <img only-margin-left src="@/assets/icons/back--white.svg">
             </a>
             <h1>{{game.name}}</h1>
 
