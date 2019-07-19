@@ -1,10 +1,10 @@
 <template>
     <section padding has-header class="edit-user">
         <header header>
-            <h1>{{$t('edit-user.title')}}</h1>
             <a @click="$router.go(-1)">
-                <img src="@/assets/icons/close.svg">
+                <img only-margin-left src="@/assets/icons/back.svg">
             </a>
+            <h1>{{$t('edit-user.title')}}</h1>
         </header>
 
         <form @submit="editUser" v-if="user">

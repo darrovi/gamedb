@@ -1,10 +1,10 @@
 <template>
     <section class="game" v-if="game" @scroll="onScroll">
         <header class="game__header">
-            <h1>{{game.name}}</h1>
             <a @click="$router.go(-1)">
-                <img src="@/assets/icons/close--white.svg">
+                <img only-margin-left src="@/assets/icons/back.svg">
             </a>
+            <h1>{{game.name}}</h1>
 
             <div id="game-image" class="game__image" v-bind:style="{ backgroundImage: 'url(' + game.image + ')' }">
                 <div class="game__image-gradient"></div>

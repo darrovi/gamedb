@@ -1,6 +1,9 @@
 <template>
     <section padding has-header class="friends">
         <header header>
+            <a @click="$router.go(-1)">
+                <img only-margin-left src="@/assets/icons/back.svg">
+            </a>
             <h1>{{$t('friends.title')}}</h1>
 
             <img src="@/assets/icons/add.svg" @click="showAddFriendModal = true">

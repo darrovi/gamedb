@@ -2,11 +2,11 @@
     <section padding has-header class="friend">
         <template v-if="friend">
             <header header>
-                <img class="friend__profile-image" v-if="friend.image" :src="friend.image">
-                <h1>{{friend.name}}</h1>
                 <a @click="$router.go(-1)">
-                    <img src="@/assets/icons/close.svg">
+                    <img only-margin-left src="@/assets/icons/back.svg">
                 </a>
+                <h1>{{friend.name}}</h1>
+                <img class="friend__profile-image" v-if="friend.image" :src="friend.image">
             </header>
 
             <div class="friend__profile-info">
@@ -56,7 +56,6 @@
             height: 30px;
             width: 30px;
             border-radius: 100%;
-            margin-right: 16px;
         }
 
         &__subtitle {

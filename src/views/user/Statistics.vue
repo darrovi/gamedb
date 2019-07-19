@@ -1,10 +1,10 @@
 <template>
     <section padding has-header id="statistics" class="statistics">
         <header header>
-            <h1>{{$t('statistics.title')}}</h1>
             <a @click="$router.go(-1)">
-                <img src="@/assets/icons/close.svg">
+                <img only-margin-left src="@/assets/icons/back.svg">
             </a>
+            <h1>{{$t('statistics.title')}}</h1>
         </header>
 
         <ul class="statistics__tabs">
