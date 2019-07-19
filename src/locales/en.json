@@ -110,5 +110,9 @@
     "title": "Friends",
     "friend-id": "Friend code",
     "not-found": "User not found with that code"
+  },
+  "friend": {
+    "codes": "Friend codes",
+    "games": "Games"
   }
 }

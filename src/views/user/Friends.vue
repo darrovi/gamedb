@@ -7,10 +7,10 @@
         </header>
 
         <ul v-if="user" class="friends__list">
-            <li v-for="friend of friends" :key="friend.id">
+            <router-link tag="li" :to="'/user/friends/' + friend.id" v-for="friend of friends" :key="friend.id">
                 <img :src="friend.image">
                 <h2> {{friend.name}}</h2>
-            </li>
+            </router-link>
         </ul>
 
         <Modal v-show="showAddFriendModal">

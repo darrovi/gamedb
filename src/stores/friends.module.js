@@ -1,13 +1,20 @@
 import {db} from '@/firebase/init';
 import firebase from 'firebase'
+import moment from "moment";
 
 const state = {
     friends: [],
-    currentFriendId: ''
+    currentFriendId: '',
+    currentFriendGames: []
 };
 
 const getters = {
-    friends: (state) => state.friends
+    friends: (state) => state.friends,
+    currentFriend: (state) => {
+        const friend = state.friends.find(f => f.id === state.currentFriendId);
+        if (friend) friend['games'] = state.currentFriendGames;
+        return friend;
+    }
 };
 
 const mutations = {
@@ -18,7 +25,19 @@ const mutations = {
         state.friends = [];
     },
     SET_CURRENT_FRIEND: (state, id) => {
-        state.currentFriendId = id
+        state.currentFriendId = id;
+        const friend = state.friends.find(f => f.id === id);
+
+        // Get the friend games
+        let games = [];
+
+        if (friend) {
+            db.collection('games').where('userId', '==', friend.userId).onSnapshot((snapshot) => {
+                games = [];
+                snapshot.forEach((doc) => games.push({id: doc.id, ...doc.data()}));
+                state.currentFriendGames = games.sort((a, b) => moment(String(b.updatedAt)).diff(moment(String(a.updatedAt))));
+            });
+        }
     }
 };
 

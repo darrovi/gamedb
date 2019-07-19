@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="'/games/' + game.id" tag="article" class="game-list-item">
+    <router-link :to="'/games/' + game.id" tag="article" class="game-list-item" :class="{disabled: !canNavigate}">
         <div class="game-list-item__image" v-bind:style="{ backgroundImage: 'url(' + game.image + ')' }"></div>
         <div class="game-list-item__info">
             <h2 class="game-list-item__name">
@@ -22,7 +22,7 @@
 <script>
     export default {
         name: "GameListItem",
-        props: ['game']
+        props: ['game', 'canNavigate']
     }
 </script>
 
@@ -34,6 +34,7 @@
         overflow: hidden;
         display: flex;
         transition: all 0.2s ease-in-out;
+        width: 100%;
 
         &:active {
             transform: scale(1.05);
@@ -82,5 +83,9 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+    }
+
+    .disabled {
+        pointer-events: none;
     }
 </style>

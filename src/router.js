@@ -10,6 +10,7 @@ import CreateGame from './views/games/CreateGame.vue'
 import Playing from './views/Playing.vue'
 import User from './views/user/User.vue'
 import EditUser from './views/user/EditUser.vue'
+import Friend from './views/user/Friend.vue'
 import Friends from './views/user/Friends.vue'
 import Statistics from './views/user/Statistics.vue'
 import Consoles from './views/consoles/Consoles.vue'
@@ -129,6 +130,14 @@ const router = new Router({
             path: '/user/friends',
             name: 'friends',
             component: Friends,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/user/friends/:id',
+            name: 'friend',
+            component: Friend,
             meta: {
                 requiresAuth: true
             }

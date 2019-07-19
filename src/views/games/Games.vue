@@ -25,9 +25,8 @@
             </template>
         </div>
 
-        <div class="games__list">
-            <GameListItem class="games__list-item" v-bind:game="game" v-for="game in games" v-bind:key="game.id"/>
-        </div>
+            <GameListItem class="games__list-item" v-bind:game="game" :canNavigate="true"
+                          v-for="game in games" v-bind:key="game.id"/>
 
         <Navbar/>
     </section>
