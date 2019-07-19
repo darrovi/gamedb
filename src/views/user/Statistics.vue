@@ -59,7 +59,7 @@
                 let average = 0;
 
                 for (const game of this.games) {
-                    average += Number(game.score);
+                    average += game.score;
                 }
 
                 return Math.round(average / this.games.length * 100) / 100;
