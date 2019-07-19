@@ -20,11 +20,13 @@
                 </ul>
             </fieldset>
 
-            <fieldset>
+            <div class="create-game__image-input">
+                <img :src="game.image">
+                <fieldset>
                 <label for="image">{{$t('create-game.image')}}</label>
                 <input id="image" v-model="game.image"/>
             </fieldset>
-
+            </div>
             <fieldset>
                 <label for="description">{{$t('create-game.description')}}</label>
                 <textarea id="description" v-model="game.description"></textarea>
@@ -135,9 +137,10 @@
                 if (userId) {
                     this.$store.commit('loading/start');
                     this.game.userId = userId;
+                    this.game.score = Number(this.game.score);
                     this.game.createdAt = moment().format();
                     this.game.updatedAt = moment().format();
-                    if (! this.game.releaseDate) {
+                    if (!this.game.releaseDate) {
                         delete this.game.releaseDate
                     }
 
@@ -185,6 +188,21 @@
                 ul {
                     max-height: 200px;
                 }
+            }
+        }
+
+        &__image-input {
+            display: flex;
+
+            img {
+                height: 62px;
+                width: 100px;
+                object-fit: cover;
+            }
+
+            fieldset {
+                padding-left: 16px;
+                flex-grow: 1;
             }
         }
 

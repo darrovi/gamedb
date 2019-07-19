@@ -7,16 +7,19 @@
             </a>
         </header>
 
-        <form @submit="editGame">
-            <fieldset class="edit-game__name-fieldset">
+        <form @submit="editGame" v-if="game">
+            <fieldset>
                 <label required for="name">{{$t('create-game.name')}}</label>
                 <input id="name" required v-model="game.name" autocomplete="off"/>
             </fieldset>
 
-            <fieldset>
-                <label for="image">{{$t('create-game.image')}}</label>
-                <input id="image" v-model="game.image"/>
-            </fieldset>
+            <div class="edit-game__image-input">
+                <img :src="game.image">
+                <fieldset>
+                    <label for="image">{{$t('create-game.image')}}</label>
+                    <input id="image" v-model="game.image"/>
+                </fieldset>
+            </div>
 
             <fieldset>
                 <label for="description">{{$t('create-game.description')}}</label>
@@ -80,10 +83,14 @@
                 return this.$store.getters['games/currentGame']
             }
         },
+        created() {
+            this.$store.dispatch('games/setCurrentGame', this.$route.params.id);
+        },
         methods: {
             editGame(e) {
                 this.$store.commit('loading/start');
                 this.game.updatedAt = moment().format();
+                this.game.score = Number(this.game.score);
 
                 db.collection('games').doc(this.game.id).set(this.game).then(() => {
                     this.$store.commit('loading/stop');
@@ -98,36 +105,18 @@
 
 <style scoped lang="scss">
     .edit-game {
+        &__image-input {
+            display: flex;
 
-        &__name-fieldset {
-            position: relative;
-
-            ul {
-                width: 100%;
-                max-height: 0;
-                background: $card-color;
-                overflow: auto;
-                position: absolute;
-                top: 59px;
-                z-index: 100;
-                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-                border-bottom-left-radius: 6px;
-                border-bottom-right-radius: 6px;
-                transition: max-height 0.2s ease-in-out;
-                padding: 0 12px;
-                box-sizing: border-box;
-
-                li {
-                    padding: 12px 0;
-                    border-bottom: 1px solid #2A2A2A;
-                    font-size: 14px;
-                }
+            img {
+                height: 62px;
+                width: 100px;
+                object-fit: cover;
             }
 
-            &:focus-within {
-                ul {
-                    max-height: 200px;
-                }
+            fieldset {
+                padding-left: 16px;
+                flex-grow: 1;
             }
         }
 
