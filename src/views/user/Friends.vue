@@ -7,7 +7,7 @@
         </header>
 
         <ul v-if="user" class="friends__list">
-            <li v-for="friend of user.friends" :key="friend.id">
+            <li v-for="friend of friends" :key="friend.id">
                 <img :src="friend.image">
                 <h2> {{friend.name}}</h2>
             </li>
@@ -46,6 +46,9 @@
         computed: {
             user() {
                 return this.$store.getters['auth/user'];
+            },
+            friends() {
+                return this.$store.getters['friends/friends'];
             }
         },
         methods: {
