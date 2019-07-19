@@ -105,5 +105,10 @@
     "finished": "You have finished ",
     "score": "The average score of your games is",
     "points": "point | points"
+  },
+  "friends": {
+    "title": "Friends",
+    "friend-id": "Friend code",
+    "not-found": "User not found with that code"
   }
 }
