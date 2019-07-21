@@ -98,11 +98,16 @@
 
                 &.selected {
                     border-bottom: 3px solid var(--color);
+
+                    img {
+                        transform: scale(1.2);
+                    }
                 }
 
                 img {
                     height: 20px;
                     padding: 8px 8px 2px;
+                    transition: all 0.2s ease-in-out;
                 }
             }
         }
