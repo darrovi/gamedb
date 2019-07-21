@@ -68,11 +68,7 @@
         methods: {
             selectConsole(console) {
                 this.selected = console.id;
-                // if (console.color) {
                 document.getElementById('statistics').style.setProperty('--color', console.color || '#c1c1c1')
-                // } else {
-                //     document.getElementById('statistics').style.removeProperty('--color');
-                // }
             }
         }
     }
