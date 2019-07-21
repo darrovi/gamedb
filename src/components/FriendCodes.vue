@@ -1,5 +1,11 @@
 <template>
-    <div class="friend-codes">
+    <div class="friend-codes" id="friend-codes">
+        <div v-if="user.id">
+            <!--<img src="@/assets/icons/user-ids/nintendo.svg"/>-->
+            <p>{{user.id}}</p>
+            <button @click="copy(user.id, $event)">Copy</button>
+        </div>
+
         <div v-if="user.nintendoId">
             <img src="@/assets/icons/user-ids/nintendo.svg"/>
             <p>{{user.nintendoId}}</p>
@@ -46,6 +52,9 @@
             copy(text, event) {
                 const textArea = document.createElement('textArea');
                 textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.top = '0';
+
                 document.body.appendChild(textArea);
 
                 let range, selection;
