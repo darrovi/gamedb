@@ -55,38 +55,40 @@
 </template>
 
 <script>
-    import moment from 'moment'
-
     export default {
         name: "GamesFilter",
         props: ['filter'],
         methods: {
             close() {
                 this.$emit('close');
-                this.filter = {}
+                this.$store.dispatch('games/setFilter', {});
             },
             onFilter() {
-                if (this.filter.releaseDateFrom) {
-                    this.filter.releaseDateFrom = moment(this.filter.releaseDateFrom, 'YYYY-MM-DD').format();
-                }
-
-                if (this.filter.releaseDateTo) {
-                    this.filter.releaseDateTo = moment(this.filter.releaseDateTo, 'YYYY-MM-DD').format();
-                }
-
                 this.$emit('filter', this.filter);
             },
             checkPlaying(checked) {
-                if (checked) document.getElementById('not-playing').checked = false;
+                if (checked) {
+                    document.getElementById('not-playing').checked = false;
+                    delete this.filter.notPlaying;
+                }
             },
             checkNotPlaying(checked) {
-                if (checked) document.getElementById('playing').checked = false;
+                if (checked) {
+                    document.getElementById('playing').checked = false;
+                    delete this.filter.playing;
+                }
             },
             checkFinished(checked) {
-                if (checked) document.getElementById('not-finished').checked = false;
+                if (checked) {
+                    document.getElementById('not-finished').checked = false;
+                    delete this.filter.notFinished;
+                }
             },
             checkNotFinished(checked) {
-                if (checked) document.getElementById('finished').checked = false;
+                if (checked) {
+                    document.getElementById('finished').checked = false;
+                    delete this.filter.finished;
+                }
             }
         }
     }

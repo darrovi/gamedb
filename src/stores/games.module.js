@@ -3,12 +3,14 @@ import moment from 'moment'
 
 const state = {
     games: [],
+    filter: {},
     filteredGames: [],
     currentGameId: null
 };
 
 const getters = {
     all: (state) => state.games,
+    filter: (state) => state.filter,
     filtered: (state) => state.filteredGames,
     playing: (state) => state.games.filter(g => g.playing),
     currentGame: (state) => state.games.find(g => g.id === state.currentGameId)
@@ -71,22 +73,24 @@ const mutations = {
                     }
                 }
 
-                if (filter.releaseDateTo) {
+                const releaseDateTo = moment(filter.releaseDateTo, 'YYYY-MM-DD').format();
+                if (releaseDateTo) {
                     if (!g.releaseDate) {
                         return false;
                     }
 
-                    if (moment(filter.releaseDateTo).isBefore(g.releaseDate)) {
+                    if (moment(releaseDateTo).isBefore(g.releaseDate)) {
                         return false;
                     }
                 }
 
-                if (filter.releaseDateFrom) {
+                const releaseDateFrom = moment(filter.releaseDateFrom, 'YYYY-MM-DD').format();
+                if (releaseDateFrom) {
                     if (!g.releaseDate) {
                         return false;
                     }
 
-                    if (moment(filter.releaseDateFrom).isAfter(g.releaseDate)) {
+                    if (moment(releaseDateFrom).isAfter(g.releaseDate)) {
                         return false;
                     }
                 }
@@ -97,6 +101,9 @@ const mutations = {
     },
     SET_CURRENT_GAME: (state, id) => {
         state.currentGameId = id
+    },
+    SET_FILTER: (state, filter) => {
+        state.filter = filter;
     }
 };
 
@@ -112,6 +119,10 @@ const actions = {
     },
     setCurrentGame({commit}, id) {
         commit('SET_CURRENT_GAME', id)
+    },
+    setFilter({commit}, filter) {
+        commit('SET_FILTER', filter);
+        this.dispatch('games/filterGames', filter, {root: true});
     }
 };
 
