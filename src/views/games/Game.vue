@@ -116,7 +116,7 @@
             </template>
             <template slot="buttons">
                 <button secondary @click="showMarkAsPlayingModal = false">{{$t('common.cancel')}}</button>
-                <button @click="markAsPlaying">{{$t('common.accept')}}</button>
+                <button @click="markAsPlaying" :disabled="!playingDate">{{$t('common.accept')}}</button>
             </template>
         </Modal>
 
