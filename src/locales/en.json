@@ -46,7 +46,8 @@
     "score": "Score",
     "remove-game": "Remove game",
     "edit-game": "Edit game",
-    "remove-game-description": "Do yo want to remove this game from your library?"
+    "remove-game-description": "Do yo want to remove this game from your library?",
+    "select-date": "Select start date"
   },
   "games": {
     "title": "Library",
