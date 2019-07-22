@@ -8,8 +8,11 @@
         </header>
 
         <ul class="statistics__tabs">
-            <li v-for="console in consoles" :key="console.id" @click="selectConsole(console)"
-                :class="{selected: console.id === selected}">
+            <li @click="selectConsole({slug: 'all'})" :class="{selected: 'all' === selected}">
+                <img :src="'/icons/consoles/all.svg'">
+            </li>
+            <li v-for="console in consoles" :key="console.slug" @click="selectConsole(console)"
+                :class="{selected: console.slug === selected}">
                 <img :src="console.logo">
             </li>
         </ul>
@@ -32,14 +35,14 @@
 </template>
 
 <script>
-    import {CONSOLES} from '@/constants'
+    import {CONSOLES} from '@/utils/platforms'
 
     export default {
         name: "Statistics",
         data() {
             return {
                 consoles: CONSOLES,
-                selected: 0
+                selected: 'all'
             }
         },
         computed: {
@@ -67,7 +70,7 @@
         },
         methods: {
             selectConsole(console) {
-                this.selected = console.id;
+                this.selected = console.slug;
                 document.getElementById('statistics').style.setProperty('--color', console.color || '#c1c1c1')
             }
         }

@@ -16,7 +16,7 @@
 
 <script>
     import Modal from "./Modal";
-    import {DEFAULT_IMAGES_NUMBER} from '@/constants'
+    import {DEFAULT_IMAGES_NUMBER} from '@/utils/constants'
     import firebase from "firebase";
 
     export default {

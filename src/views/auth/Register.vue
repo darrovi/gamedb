@@ -64,7 +64,7 @@
     import firebase from 'firebase';
     import {db} from '@/firebase/init';
     import ProfileImagePicker from "../../components/ProfileImagePicker";
-    import {DEFAULT_IMAGES_NUMBER} from '@/constants'
+    import {DEFAULT_IMAGES_NUMBER} from '@/utils/constants'
 
     export default {
         name: "Register",
