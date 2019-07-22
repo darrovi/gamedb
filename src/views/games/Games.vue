@@ -15,7 +15,7 @@
         </header>
 
         <div class="games__has-filter" v-if="hasFilter">
-            <h2>{{$t('games.search-results')}}</h2>
+            <h2>{{games.length + ' ' + $tc('games.search-results', games.length)}}</h2>
             <button @click="clearFilters">{{$t('games.clear-filters')}}</button>
         </div>
 

@@ -55,7 +55,7 @@
     "no-results": "No tienes ningún juego añadido a la librería",
     "add-game": "Añade un nuevo juego",
     "search-placeholder": "Search...",
-    "search-results": "Search results",
+    "search-results": "result | results",
     "clear-filters": "Clear filters"
   },
   "games-filter": {
