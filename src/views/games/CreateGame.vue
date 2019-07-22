@@ -170,7 +170,7 @@
                 position: absolute;
                 top: 59px;
                 z-index: 100;
-                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+                box-shadow: 0 2px 4px 0 $card-shadow-color;
                 border-bottom-left-radius: 6px;
                 border-bottom-right-radius: 6px;
                 transition: max-height 0.2s ease-in-out;

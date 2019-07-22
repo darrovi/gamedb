@@ -5,6 +5,7 @@
   --text-color: #C1C1C1;
   --toolbar-color: black;
   --card-color: #141414;
+  --card-shadow-color: rgba(0, 0, 0, 0.5);
   --secondary-text-color: #464646;
 }
 
@@ -24,4 +25,5 @@ $background-color: var(--background-color);
 $text-color: var(--text-color);
 $toolbar-color: var(--toolbar-color);
 $card-color: var(--card-color);
+$card-shadow-color: var(--card-shadow-color);
 $secondary-text-color: var(--secondary-text-color);

@@ -30,7 +30,7 @@
     .game-list-item {
         border-radius: 6px;
         background-color: $card-color;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 2px 0 $card-shadow-color;
         overflow: hidden;
         display: flex;
         transition: all 0.2s ease-in-out;
@@ -38,7 +38,7 @@
 
         &:active {
             transform: scale(1.05);
-            box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 0 7px 7px 0 $card-shadow-color;
         }
 
         &__image {
