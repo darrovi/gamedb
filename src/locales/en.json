@@ -90,6 +90,14 @@
   "consoles": {
     "title": "Consoles"
   },
+  "create-console": {
+    "title": "Create console",
+    "console": "Console",
+    "bought-date": "Bought date",
+    "price": "Price",
+    "seller": "Seller",
+    "comment": "Comment"
+  },
   "user": {
     "title": "Profile",
     "logout": "Logout",

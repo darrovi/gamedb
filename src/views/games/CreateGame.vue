@@ -87,11 +87,6 @@
                 searchTimeout: null
             }
         },
-        computed: {
-            isFormValid() {
-                return true
-            }
-        },
         methods: {
             searchDebounce() {
                 this.loadingPossibleGames = true;

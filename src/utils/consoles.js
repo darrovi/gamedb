@@ -72,7 +72,7 @@ export const CONSOLES = [
         logo: '/icons/consoles/nintendoswitch.svg',
         color: '#E60012',
         producer: 'Nintendo',
-        releaseDate: 0,
+        releaseDate: 1488495600,
         slug: 'ns'
     },
     {

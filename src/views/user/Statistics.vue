@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import {CONSOLES} from '@/utils/platforms'
+    import {CONSOLES} from '@/utils/consoles'
 
     export default {
         name: "Statistics",
