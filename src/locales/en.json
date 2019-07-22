@@ -53,7 +53,10 @@
     "title": "Library",
     "no-results-search": "No hemos encontrado ni mierdas",
     "no-results": "No tienes ningún juego añadido a la librería",
-    "add-game": "Añade un nuevo juego"
+    "add-game": "Añade un nuevo juego",
+    "search-placeholder": "Search...",
+    "search-results": "Search results",
+    "clear-filters": "Clear filters"
   },
   "games-filter": {
     "title": "Filters",

@@ -4,19 +4,20 @@
             <h1>{{$t('games.title')}}</h1>
 
             <input id="searchInput" @input="search($event.target.value)" @keyup.esc="toggleSearch" v-model="filter.name"
-                   type="text" placeholder="Buscar...">
+                   type="text" :placeholder="$t('games.search-placeholder')" autocomplete="off">
 
-            <div :class="{'active-filter': !searching && hasFilter}" style="display: flex;">
-                <img v-bind:src="'/icons/' + (searching ? 'close.svg': 'search.svg')" @click="toggleSearch">
-            </div>
+            <img v-bind:src="'/icons/' + (searching ? 'close.svg': 'search.svg')" @click="toggleSearch">
 
             <router-link v-if="!searching" to="/games/create">
                 <img src="@/assets/icons/add.svg">
             </router-link>
-            <div v-else :class="{'active-filter': hasFilter}" style="display: flex;">
-                <img src="@/assets/icons/filter.svg" @click="toggleFilters">
-            </div>
+            <img v-else src="@/assets/icons/filter.svg" @click="toggleFilters">
         </header>
+
+        <div class="games__has-filter" v-if="hasFilter">
+            <h2>{{$t('games.search-results')}}</h2>
+            <button @click="clearFilters">{{$t('games.clear-filters')}}</button>
+        </div>
 
         <GamesFilter v-bind:filter="filter" v-show="showFilters" v-on:close="toggleFilters" v-on:filter="onFilter()"/>
 
@@ -95,6 +96,11 @@
             onFilter() {
                 this.showFilters = false;
                 this.$store.dispatch('games/setFilter', this.filter);
+            },
+            clearFilters() {
+                this.showFilters = false;
+                this.searching = false;
+                this.$store.dispatch('games/setFilter', {});
             }
         },
         destroyed() {
@@ -143,28 +149,23 @@
             }
         }
 
+        &__has-filter {
+            border-radius: 6px;
+            background-color: $card-color;
+            box-shadow: 0 2px 2px 0 $card-shadow-color;
+            padding: 10px;
+            display: flex;
+            margin-bottom: 32px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         &__no-results {
             text-align: center;
 
             button {
                 margin-top: 16px;
             }
-        }
-    }
-
-    .active-filter {
-        position: relative;
-
-        &::before {
-            content: '';
-            display: block;
-            position: absolute;
-            background: $danger-color;
-            height: 8px;
-            width: 8px;
-            border-radius: 8px;
-            top: 0;
-            right: -5px;
         }
     }
 </style>
