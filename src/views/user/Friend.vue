@@ -15,7 +15,7 @@
                 <FriendCodes :user="friend"/>
 
                 <h2 class="friend__subtitle">{{$t('friend.games')}}</h2>
-                <GameListItem class="friend__list-item" v-bind:game="game" :canNavigate="false"
+                <GameListItem class="friend__list-item" v-bind:game="game"
                               v-for="game in friend.games" v-bind:key="game.id"/>
             </div>
         </template>

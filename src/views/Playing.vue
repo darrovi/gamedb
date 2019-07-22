@@ -9,8 +9,7 @@
             <p>{{$t('playing.no-results')}}</p>
         </div>
 
-        <GameListItem class="playing__list-item" v-bind:game="game" :canNavigate="true"
-                      v-for="game in games" v-bind:key="game.id"/>
+        <GameListItem class="playing__list-item" v-bind:game="game" v-for="game in games" v-bind:key="game.id"/>
 
         <Navbar/>
     </section>

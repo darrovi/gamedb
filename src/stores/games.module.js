@@ -3,21 +3,50 @@ import moment from 'moment'
 
 const state = {
     games: [],
+    loadingGames: false,
     filter: {},
     filteredGames: [],
-    currentGameId: null
+    currentGame: null
 };
 
 const getters = {
     all: (state) => state.games,
+    loadingGames: (state) => state.loadingGames,
     filter: (state) => state.filter,
     filtered: (state) => state.filteredGames,
     playing: (state) => state.games.filter(g => g.playing),
-    currentGame: (state) => state.games.find(g => g.id === state.currentGameId)
+    currentGame: (state) => state.currentGame
 };
 
 const mutations = {
-    GET_GAMES: (state, userId) => {
+    SET_GAMES: (state, games) => {
+        state.games = games;
+        state.filteredGames = games;
+    },
+    RESET_GAMES: (state) => {
+        state.games = [];
+        state.filteredGames = [];
+    },
+    SET_CURRENT_GAME: (state, game) => {
+        state.currentGame = game;
+    },
+    RESET_CURRENT_GAME: (state) => {
+        state.currentGame = null;
+    },
+    FILTER_GAMES: (state, games) => {
+        state.filteredGames = games;
+    },
+    SET_LOADING_GAMES: (state, loading) => {
+        state.loadingGames = loading;
+    },
+    SET_FILTER: (state, filter) => {
+        state.filter = filter;
+    }
+};
+
+const actions = {
+    getGames({commit}, userId) {
+        commit('SET_LOADING_GAMES', true);
         let games = [];
 
         db.collection('games').where('userId', '==', userId).onSnapshot((snapshot) => {
@@ -28,20 +57,29 @@ const mutations = {
 
             games = games.sort((a, b) => moment(String(b.updatedAt)).diff(moment(String(a.updatedAt))));
 
-            state.games = games;
-            state.filteredGames = games;
+            commit('SET_GAMES', games);
+            commit('SET_LOADING_GAMES', false);
         });
     },
-    RESET_GAMES: (state) => {
-        state.games = [];
-        state.filteredGames = [];
+    resetGames({commit}) {
+        commit('RESET_GAMES')
     },
-    FILTER_GAMES: (state, filter) => {
+    setCurrentGame({commit}, id) {
+        db.collection('games').doc(id).get().then((doc) => {
+            const game = {id: doc.id, ...doc.data()};
+            commit('SET_CURRENT_GAME', game);
+        })
+    },
+    resetCurrentGame({commit}) {
+        commit('RESET_CURRENT_GAME')
+    },
+    filterGames({commit, state}, filter) {
+        let games;
         // Check if the object is empty
         if (Object.entries(filter).length === 0 && filter.constructor === Object) {
-            state.filteredGames = state.games
+            games = state.games
         } else {
-            state.filteredGames = state.games.filter((g) => {
+            games = state.games.filter((g) => {
                 // Check all the filters one by one, and if it doesn't match return false. If all of them matches return true
                 if (filter.name) {
                     if (!g.name.toUpperCase().includes(filter.name.toUpperCase())) {
@@ -98,27 +136,8 @@ const mutations = {
                 return true
             })
         }
-    },
-    SET_CURRENT_GAME: (state, id) => {
-        state.currentGameId = id
-    },
-    SET_FILTER: (state, filter) => {
-        state.filter = filter;
-    }
-};
 
-const actions = {
-    getGames({commit}, userId) {
-        commit('GET_GAMES', userId)
-    },
-    resetGames({commit}) {
-        commit('RESET_GAMES')
-    },
-    filterGames({commit}, filter) {
-        commit('FILTER_GAMES', filter)
-    },
-    setCurrentGame({commit}, id) {
-        commit('SET_CURRENT_GAME', id)
+        commit('FILTER_GAMES', games);
     },
     setFilter({commit}, filter) {
         commit('SET_FILTER', filter);
