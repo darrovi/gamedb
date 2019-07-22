@@ -37,7 +37,7 @@
                     <p v-if="game.lastFinished">{{$t('game.finished-on')}} {{game.lastFinished | formatDate}}</p>
                 </div>
                 <div v-if="game.completed !== true">
-                    <button @click="markAsFinished">
+                    <button @click="showMarkAsFinishedModal = true">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 24 24">
                             <path d="M 23 0.09375 L 21.5 1.40625 C 21.5 1.40625 19.292969 3.1875 17.09375 3.1875 C 16.09375 3.1875 15.3125 2.804688 14.3125 2.40625 C 13.210938 1.90625 11.898438 1.1875 10 1.1875 C 4.601563 1.1875 1.511719 4.488281 1.3125 4.6875 L 1 5 L 6.1875 19.59375 L 7.65625 23.71875 L 9.53125 23.0625 L 7.78125 18.09375 C 8.589844 17.410156 10.324219 16.09375 12.09375 16.09375 C 13.59375 16.09375 14.511719 16.394531 15.3125 16.59375 C 16.113281 16.792969 16.894531 17.09375 18.09375 17.09375 C 20.492188 17.09375 22.492188 16 22.59375 16 L 23.09375 15.6875 Z M 10.09375 3 C 10.355469 3 10.605469 3.03125 10.84375 3.0625 L 11.6875 6.3125 C 12.585938 6.3125 15.09375 7.5 15.09375 7.5 L 14.375 4.375 C 15.199219 4.730469 16.050781 5 17.1875 5 C 17.652344 5 18.113281 4.941406 18.5625 4.84375 L 18.8125 8 C 18.8125 8 19.851563 7.722656 21.1875 6.875 L 21.1875 11.09375 C 20.078125 11.585938 19.09375 11.8125 19.09375 11.8125 L 19.34375 15.0625 C 18.917969 15.144531 18.476563 15.1875 18 15.1875 C 17.5625 15.1875 17.195313 15.132813 16.84375 15.0625 L 16.09375 11.8125 C 15.09375 11.511719 13.605469 11 12.90625 11 L 13.8125 14.34375 C 13.273438 14.257813 12.675781 14.1875 11.90625 14.1875 C 11.273438 14.1875 10.652344 14.34375 10.0625 14.53125 L 8.8125 11.3125 C 7.789063 11.734375 6.742188 12.507813 6.03125 13.09375 L 4.40625 8.53125 C 5.875 7.410156 7.3125 6.90625 7.3125 6.90625 L 6.03125 3.78125 C 7.132813 3.335938 8.488281 3 10.09375 3 Z M 19.09375 11.8125 L 18.8125 8 C 18.8125 8 18.207031 8.1875 17.40625 8.1875 C 16.304688 8.1875 15.09375 7.59375 15.09375 7.59375 L 16 11.6875 C 16 11.6875 16.894531 11.90625 17.59375 11.90625 C 18.292969 11.90625 19.09375 11.8125 19.09375 11.8125 Z M 11.6875 6.3125 L 10.90625 6.3125 C 8.90625 6.3125 7.1875 7 7.1875 7 L 8.90625 11.3125 C 8.90625 11.3125 10.195313 10.8125 11.09375 10.8125 C 11.992188 10.8125 12.90625 10.90625 12.90625 10.90625 Z "></path>
                         </svg>
@@ -120,6 +120,17 @@
             </template>
         </Modal>
 
+        <Modal v-show="showMarkAsFinishedModal">
+            <h2 slot="header">{{$t('game.select-date')}}</h2>
+            <template slot="body">
+                <input type="date" v-model="finishedDate"/>
+            </template>
+            <template slot="buttons">
+                <button secondary @click="showMarkAsFinishedModal = false">{{$t('common.cancel')}}</button>
+                <button @click="markAsFinished" :disabled="!playingDate">{{$t('common.accept')}}</button>
+            </template>
+        </Modal>
+
         <Modal v-show="showMarkAsNotFinishedModal">
             <h2 slot="header">{{$t('game.not-finish')}}</h2>
             <p slot="body">{{$t('game.not-finish-description')}}</p>
@@ -160,7 +171,9 @@
             return {
                 showRemoveModal: false,
                 showMarkAsPlayingModal: false,
+                showMarkAsFinishedModal: false,
                 showMarkAsNotFinishedModal: false,
+                finishedDate: moment().format('YYYY-MM-DD'),
                 playingDate: moment().format('YYYY-MM-DD')
             }
         },
@@ -188,12 +201,13 @@
                 event.target.remove();
             },
             markAsPlaying() {
-                this.showMarkAsPlayingModal = false;
-
                 db.collection('games').doc(this.game.id).update({
                     lastStarted: moment(this.playingDate, 'YYYY-MM-DD').format(),
                     playing: true
-                })
+                });
+
+                this.showMarkAsPlayingModal = false;
+                this.playingDate = moment().format('YYYY-MM-DD');
             },
             markAsNotPlaying() {
                 db.collection('games').doc(this.game.id).update({
@@ -202,10 +216,13 @@
             },
             markAsFinished() {
                 db.collection('games').doc(this.game.id).update({
-                    lastFinished: moment().format(),
+                    lastFinished: moment(this.finishedDate, 'YYYY-MM-DD').format(),
                     playing: false,
                     completed: true
-                })
+                });
+
+                this.showMarkAsFinishedModal = false;
+                this.finishedDate = moment().format('YYYY-MM-DD');
             },
             markAsNotFinished() {
                 this.showMarkAsNotFinishedModal = false;
