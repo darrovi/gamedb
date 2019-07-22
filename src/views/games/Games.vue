@@ -6,12 +6,16 @@
             <input id="searchInput" @input="search($event.target.value)" @keyup.esc="toggleSearch" v-model="filter.name"
                    type="text" placeholder="Buscar...">
 
-            <img v-bind:src="'/icons/' + (searching ? 'close.svg': 'search.svg')" @click="toggleSearch">
+            <div :class="{'active-filter': !searching && hasFilter}" style="display: flex;">
+                <img v-bind:src="'/icons/' + (searching ? 'close.svg': 'search.svg')" @click="toggleSearch">
+            </div>
 
             <router-link v-if="!searching" to="/games/create">
                 <img src="@/assets/icons/add.svg">
             </router-link>
-            <img v-else src="@/assets/icons/filter.svg" @click="toggleFilters">
+            <div v-else :class="{'active-filter': hasFilter}" style="display: flex;">
+                <img src="@/assets/icons/filter.svg" @click="toggleFilters">
+            </div>
         </header>
 
         <GamesFilter v-bind:filter="filter" v-show="showFilters" v-on:close="toggleFilters" v-on:filter="onFilter()"/>
@@ -51,6 +55,9 @@
             },
             loadingGames() {
                 return this.$store.getters['games/loadingGames']
+            },
+            hasFilter() {
+                return this.$store.getters['games/hasFilter']
             },
             filter: {
                 get() {
@@ -142,6 +149,22 @@
             button {
                 margin-top: 16px;
             }
+        }
+    }
+
+    .active-filter {
+        position: relative;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            background: $danger-color;
+            height: 8px;
+            width: 8px;
+            border-radius: 8px;
+            top: 0;
+            right: -5px;
         }
     }
 </style>

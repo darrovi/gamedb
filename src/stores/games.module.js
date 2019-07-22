@@ -13,6 +13,7 @@ const getters = {
     all: (state) => state.games,
     loadingGames: (state) => state.loadingGames,
     filter: (state) => state.filter,
+    hasFilter: (state) => Object.entries(state.filter).length !== 0 || state.filter.constructor !== Object,
     filtered: (state) => state.filteredGames,
     playing: (state) => state.games.filter(g => g.playing),
     currentGame: (state) => state.currentGame
