@@ -133,6 +133,10 @@ label {
 }
 
 input {
+  &[type='date'] {
+    height: 41px;
+  }
+
   &:not([type='checkbox']) {
     background: transparent;
     border: none;
