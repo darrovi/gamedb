@@ -3,8 +3,7 @@
         <img :src="console.logo"/>
         <h2>{{console.name}}</h2>
 
-        <div class="console-list-item__image"
-             :style="{backgroundImage: 'url(' + console.image +')'}"></div>
+        <div class="console-list-item__image" :style="{backgroundImage: 'url(' + console.image +')'}"></div>
     </router-link>
 </template>
 

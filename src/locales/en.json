@@ -87,6 +87,14 @@
     "title": "Playing",
     "no-results": "¡¡Bien hecho!! No estás perdiendo el tiempo con jueguecitos"
   },
+  "console": {
+    "release-date": "Release date",
+    "producer": "Producer",
+    "bought-date": "Bought date",
+    "seller": "Seller",
+    "price": "Price",
+    "comment": "Comment"
+  },
   "consoles": {
     "title": "Consoles"
   },
