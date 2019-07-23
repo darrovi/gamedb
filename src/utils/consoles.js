@@ -59,7 +59,8 @@ export const CONSOLES = [
         producer: 'Sega',
         releaseDate: 805154400,
         slug: 'ss'
-    }, {
+    },
+    {
         generationNumber: 3,
         name: 'Master System',
         producer: 'Sega',
@@ -70,6 +71,7 @@ export const CONSOLES = [
         generationNumber: 9,
         name: 'Nintendo Switch',
         logo: '/icons/consoles/nintendoswitch.svg',
+        image: 'icons/consoles/background/nintendoswitch.png',
         color: '#E60012',
         producer: 'Nintendo',
         releaseDate: 1488495600,
@@ -86,6 +88,7 @@ export const CONSOLES = [
         generationNumber: 8,
         name: 'PlayStation 4',
         logo: '/icons/consoles/playstation4.svg',
+        image: 'icons/consoles/background/playstation4.png',
         color: '#003791',
         producer: 'Sony',
         releaseDate: 1385679600,

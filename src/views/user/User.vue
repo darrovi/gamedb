@@ -66,6 +66,7 @@
         methods: {
             logout() {
                 this.$store.dispatch('games/resetGames');
+                this.$store.dispatch('consoles/resetConsoles');
                 this.$store.dispatch('friends/resetFriends');
                 this.$store.dispatch('auth/logout');
             }

@@ -24,6 +24,7 @@
                 if (user) {
                     this.$store.dispatch('auth/setUser', user.uid);
                     this.$store.dispatch('games/getGames', user.uid);
+                    this.$store.dispatch('consoles/getConsoles', user.uid);
                 } else {
                     console.log('User is not logged in.');
                     this.$router.replace('login');
