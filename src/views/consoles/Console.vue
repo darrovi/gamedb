@@ -44,15 +44,53 @@
                 </div>
             </div>
         </div>
+
+        <div class="console__action-buttons">
+            <router-link tag="button" :to="'/console/' + console.id + '/edit'">
+                {{$t('console.edit-console')}}
+            </router-link>
+
+            <button @click="showRemoveModal = true">
+                {{$t('console.remove-console')}}
+            </button>
+        </div>
+
+        <Modal v-show="showRemoveModal">
+            <h2 slot="header">{{$t('console.remove-console')}}</h2>
+            <p slot="body">{{$t('console.remove-console-description')}}</p>
+            <template slot="buttons">
+                <button secondary @click="showRemoveModal = false">{{$t('common.cancel')}}</button>
+                <button @click="removeConsole">{{$t('console.remove-console')}}</button>
+            </template>
+        </Modal>
+
     </section>
 </template>
 
 <script>
+    import Modal from "../../components/Modal";
+    import {db} from '@/firebase/init';
+
     export default {
         name: "Console",
+        components: {Modal},
         computed: {
             console() {
                 return this.$store.getters['consoles/currentConsole']
+            }
+        },
+        data() {
+            return {
+                showRemoveModal: false
+            }
+        },
+        methods: {
+            removeConsole() {
+                this.$store.commit('loading/start');
+                db.collection('consoles').doc(this.console.id).delete().then(() => {
+                    this.$store.commit('loading/stop');
+                    this.$router.go(-1);
+                })
             }
         },
         created() {
@@ -97,6 +135,18 @@
         &__price {
             font-size: 28px;
             font-weight: 500;
+        }
+
+        &__action-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+
+            button {
+                &:last-child {
+                    color: $danger-color;
+                }
+            }
         }
     }
 </style>

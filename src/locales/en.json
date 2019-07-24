@@ -93,7 +93,10 @@
     "bought-date": "Bought date",
     "seller": "Seller",
     "price": "Price",
-    "comment": "Comment"
+    "comment": "Comment",
+    "edit-console": "Edit console",
+    "remove-console": "Remove console",
+    "remove-console-description": "Do yo want to remove this console from your library?"
   },
   "consoles": {
     "title": "Consoles"
