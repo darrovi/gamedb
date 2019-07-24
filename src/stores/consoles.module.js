@@ -52,7 +52,7 @@ const actions = {
         commit('RESET_CONSOLES')
     },
     setCurrentConsole({commit}, id) {
-        db.collection('consoles').doc(id).get().then((doc) => {
+        db.collection('consoles').doc(id).onSnapshot((doc) => {
             const console = {id: doc.id, ...doc.data()};
             commit('SET_CURRENT_CONSOLE', console);
         })

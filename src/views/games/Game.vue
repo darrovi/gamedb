@@ -218,7 +218,7 @@
             markAsNotPlaying() {
                 db.collection('games').doc(this.game.id).update({
                     playing: false
-                })
+                });
             },
             markAsFinished() {
                 db.collection('games').doc(this.game.id).update({
@@ -236,7 +236,7 @@
                 db.collection('games').doc(this.game.id).update({
                     completed: false,
                     lastFinished: null
-                })
+                });
             },
             removeGame() {
                 this.$store.commit('loading/start');

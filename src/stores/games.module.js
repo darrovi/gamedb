@@ -66,7 +66,7 @@ const actions = {
         commit('RESET_GAMES')
     },
     setCurrentGame({commit}, id) {
-        db.collection('games').doc(id).get().then((doc) => {
+        db.collection('games').doc(id).onSnapshot((doc) => {
             const game = {id: doc.id, ...doc.data()};
             commit('SET_CURRENT_GAME', game);
         })
