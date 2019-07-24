@@ -17,7 +17,7 @@
             </li>
         </ul>
 
-        <div class="statistics__info">
+        <div id="statistics-info" class="statistics__info">
             <p>
                 {{$t('statistics.total')}} <b>{{totalGames}}</b> {{$tc('statistics.games', totalGames)}}
             </p>
@@ -70,8 +70,13 @@
         },
         methods: {
             selectConsole(console) {
-                this.selected = console.slug;
-                document.getElementById('statistics').style.setProperty('--color', console.color || '#c1c1c1')
+                document.getElementById('statistics-info').style.opacity = '0';
+
+                setTimeout(() => {
+                    document.getElementById('statistics').style.setProperty('--color', console.color || '#c1c1c1')
+                    this.selected = console.slug;
+                    document.getElementById('statistics-info').style.opacity = '1';
+                }, 200);
             }
         }
     }
@@ -79,7 +84,7 @@
 
 <style scoped lang="scss">
     .statistics {
-        --color: #c1c1c1;
+        --color: white;
 
         &__tabs {
             display: flex;
@@ -95,8 +100,20 @@
             li {
                 margin-right: 8px;
 
+                &::after {
+                    content: '';
+                    display: block;
+                    height: 3px;
+                    width: 100%;
+                    background: var(--color);
+                    transform: scaleX(0);
+                    transition: all 0.1s ease-in-out;
+                }
                 &.selected {
-                    border-bottom: 3px solid var(--color);
+                    &::after {
+                        transform: scaleX(1);
+
+                    }
 
                     img {
                         transform: scale(1.2);
@@ -112,6 +129,7 @@
         }
 
         &__info {
+            transition: opacity 0.2s ease-in-out;
             p {
                 margin-top: 16px;
             }

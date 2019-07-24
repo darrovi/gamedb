@@ -55,8 +55,9 @@
         bottom: 0;
         left: 0;
         width: 100vw;
-        background: black;
+        background: $navbar-color;
         z-index: 700;
+        box-shadow: 0 11px 17px 7px black;
 
         ul {
             max-width: $body-max-width;

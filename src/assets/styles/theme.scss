@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #1A6f4C;
-  --danger-color: darkred;
-  --background-color: #0D0D0D;
+  --primary-color: #FFFFFF;
+  --danger-color: #BD0000;
+  --background-color: #272629;
   --text-color: #C1C1C1;
-  --toolbar-color: black;
-  --card-color: #141414;
-  --card-shadow-color: rgba(0, 0, 0, 0.5);
+  --navbar-color: #272629;
+  --card-color: #272629;
+  --card-shadow-color: rgba(0, 0, 0, 0.25);
   --secondary-text-color: #464646;
 }
 
@@ -23,7 +23,7 @@ $primary-color: var(--primary-color);
 $danger-color: var(--danger-color);
 $background-color: var(--background-color);
 $text-color: var(--text-color);
-$toolbar-color: var(--toolbar-color);
+$navbar-color: var(--navbar-color);
 $card-color: var(--card-color);
 $card-shadow-color: var(--card-shadow-color);
 $secondary-text-color: var(--secondary-text-color);
