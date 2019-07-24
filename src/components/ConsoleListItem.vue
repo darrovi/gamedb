@@ -54,6 +54,7 @@
 
         h2 {
             z-index: 1;
+            color: $primary-color;
         }
     }
 </style>

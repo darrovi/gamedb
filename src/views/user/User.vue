@@ -21,24 +21,24 @@
                     <router-link :to="{name: 'edit-user'}">
                         <img src="@/assets/icons/edit.svg"/>
                     </router-link>
-
                 </h1>
-             <FriendCodes :user="user"/>
-            </div>
 
-            <div class="user__buttons">
-                <router-link :to="{name: 'statistics'}">
-                    <button>
-                        <img src="@/assets/icons/statistics.svg"/>
-                        {{$t('user.statistics')}}
-                    </button>
-                </router-link>
-                <router-link :to="{name: 'friends'}">
-                    <button>
-                        <img src="@/assets/icons/friends.svg"/>
-                        {{$t('user.friends')}}
-                    </button>
-                </router-link>
+                <div class="user__buttons">
+                    <router-link :to="{name: 'statistics'}">
+                        <button>
+                            <img src="@/assets/icons/statistics.svg"/>
+                            {{$t('user.statistics')}}
+                        </button>
+                    </router-link>
+                    <router-link :to="{name: 'friends'}">
+                        <button>
+                            <img src="@/assets/icons/friends.svg"/>
+                            {{$t('user.friends')}}
+                        </button>
+                    </router-link>
+                </div>
+
+                <FriendCodes :user="user"/>
             </div>
         </template>
         <Navbar/>
@@ -110,7 +110,7 @@
         &__buttons {
             display: flex;
             justify-content: space-around;
-            margin-top: 32px;
+            margin-bottom: 16px;
 
             a {
                 flex: 0 0 50%;
@@ -119,15 +119,14 @@
 
                 button {
                     display: flex;
-                    flex-direction: column;
                     align-items: center;
                     width: 100%;
                 }
 
                 img {
                     fill: $primary-color;
-                    height: 50px;
-                    margin-bottom: 8px;
+                    height: 20px;
+                    margin-right: 8px;
                 }
 
                 p {
