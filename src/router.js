@@ -51,7 +51,8 @@ const router = new Router({
             name: 'create-game',
             component: CreateGame,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                transitionName: 'slide'
             }
         },
         {
@@ -59,7 +60,8 @@ const router = new Router({
             name: 'edit-game',
             component: EditGame,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                transitionName: 'slide'
             }
         },
         {
@@ -67,7 +69,8 @@ const router = new Router({
             name: 'game',
             component: Game,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                transitionName: 'slide'
             }
         },
         {
@@ -91,7 +94,8 @@ const router = new Router({
             name: 'console',
             component: CreateConsole,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                transitionName: 'slide'
             }
         },
         {
@@ -99,7 +103,8 @@ const router = new Router({
             name: 'create-console',
             component: Console,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                transitionName: 'slide'
             }
         },
         {
@@ -115,7 +120,8 @@ const router = new Router({
             name: 'edit-user',
             component: EditUser,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                transitionName: 'slide'
             }
         },
         {
@@ -123,7 +129,8 @@ const router = new Router({
             name: 'statistics',
             component: Statistics,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                transitionName: 'slide'
             }
         },
         {
@@ -131,7 +138,8 @@ const router = new Router({
             name: 'friends',
             component: Friends,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                transitionName: 'slide'
             }
         },
         {
@@ -139,7 +147,8 @@ const router = new Router({
             name: 'friend',
             component: Friend,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                transitionName: 'slide'
             }
         },
         {

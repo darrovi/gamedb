@@ -381,7 +381,6 @@
                     padding-left: 5px;
                 }
             }
-
         }
 
         &__label {
@@ -402,4 +401,5 @@
             }
         }
     }
+
 </style>

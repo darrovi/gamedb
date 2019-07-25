@@ -63,7 +63,6 @@
                 <button @click="removeConsole">{{$t('console.remove-console')}}</button>
             </template>
         </Modal>
-
     </section>
 </template>
 

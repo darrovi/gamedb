@@ -23,9 +23,9 @@
             <div class="create-game__image-input">
                 <img :src="game.image">
                 <fieldset>
-                <label for="image">{{$t('create-game.image')}}</label>
-                <input id="image" v-model="game.image"/>
-            </fieldset>
+                    <label for="image">{{$t('create-game.image')}}</label>
+                    <input id="image" v-model="game.image"/>
+                </fieldset>
             </div>
             <fieldset>
                 <label for="description">{{$t('create-game.description')}}</label>

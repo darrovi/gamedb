@@ -7,6 +7,7 @@ module.exports = {
                     @import "@/assets/styles/globals.scss";
                     @import "@/assets/styles/reset.scss";
                     @import "@/assets/styles/common.scss";
+                    @import "@/assets/styles/transitions.scss";
                     @import "@/assets/styles/spinner.scss";
                 `
             }
